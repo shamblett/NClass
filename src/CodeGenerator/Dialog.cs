@@ -77,6 +77,8 @@ namespace NClass.CodeGenerator
                 language = CSharpLanguage.Instance;
             else if (object.Equals(cboLanguage.SelectedItem, "Java"))
                 language = JavaLanguage.Instance;
+            else if (object.Equals(cboLanguage.SelectedItem, "Dart"))
+                language = null; // dart here SJH
 
             if (language != null)
             {
