@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using NClass.Core;
 using NClass.CSharp;
 using NClass.Java;
+using NClass.Dart;
 using NClass.Translations;
 
 namespace NClass.CodeGenerator
@@ -78,7 +79,7 @@ namespace NClass.CodeGenerator
             else if (object.Equals(cboLanguage.SelectedItem, "Java"))
                 language = JavaLanguage.Instance;
             else if (object.Equals(cboLanguage.SelectedItem, "Dart"))
-                language = null; // dart here SJH
+                language = DartLanguage.Instance;
 
             if (language != null)
             {
