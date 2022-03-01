@@ -24,7 +24,7 @@ using NClass.Translations;
 
 namespace NClass.Dart
 {
-    public sealed class DartLanguage : DotNetLanguage
+    public sealed class DartLanguage : OopLanguage
     {
         static DartLanguage instance = new DartLanguage();
 
