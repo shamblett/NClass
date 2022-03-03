@@ -205,6 +205,8 @@ namespace NClass.GUI.ModelExplorer
             project.Add(diagram);
         }
 
+        // SJH TODO add new Dart diagram
+
         private static void newUseCaseDiagram_Click(object sender, EventArgs e)
         {
             ToolStripItem menuItem = (ToolStripItem)sender;
