@@ -103,18 +103,12 @@ namespace NClass.Dart
         static Regex typeRegex = new Regex(ClosedTypePattern, RegexOptions.ExplicitCapture);
 
         static readonly string[] reservedNames = {
-            "abstract", "as", "base", "break", "case", "catch", "checked", "class", 
-            "const", "continue", "default", "delegate", "do", "else", "enum", "event", 
-            "explicit", "extern", "false", "finally", "fixed", "for", "foreach", "goto", 
-            "if", "implicit", "in", "interface", "internal", "is", "lock", "namespace",
-            "new", "null", "operator", "out", "override", "params", "private",
-            "protected", "public", "readonly", "ref", "return", "sealed", "sizeof",
-            "stackalloc", "static", "struct", "switch", "this", "throw", "true", "try",
-            "typeof", "unchecked", "unsafe", "using", "virtual", "volatile", "while"            
-        };
+            "assert", "break", "case", "catch", "class", "const", "continue", "default", "do", "else", "enum", "extends", "false", "final", "finally", "for", "if", "in", "is", "new", "null", "rethrow", "return", "super", "switch", 
+            "this", "throw", "true", "try", "var", "void", "while", "with",  "abstract", "as", "covariant", "deferred", "dynamic", "export", "extension", "external", "factory", "function", "get", "implements", "import", 
+            "interface", "library", "mixin", "operator", "part", "set", "static", "typedef"
+    };
         static readonly string[] typeKeywords = {
-            "bool", "byte", "char", "decimal", "double", "float", "int", "long",
-            "object", "sbyte", "short", "string", "uint", "ulong", "ushort", "void"
+            "bool", "double", "int", "Object", "String", "void"
         };
         static readonly Dictionary<AccessModifier, string> validAccessModifiers;
         static readonly Dictionary<ClassModifier, string> validClassModifiers;
@@ -127,13 +121,11 @@ namespace NClass.Dart
         {
             // objectClass initialization
             string[] objectMethods = {
-                "public static bool Equals(object objA, object objB)",
-                "public virtual bool Equals(object obj)",
-                "public virtual int GetHashCode()",
-                "public System.Type GetType()",
-                "protected object MemberwiseClone()",
-                "public static bool ReferenceEquals(object objA, object objB)",
-                "public virtual string ToString()"
+                "bool operator==(object other)",
+                "int get hashCode",
+                "String get runTimeType",
+                "dynamic noSuchMethod(Invocation invocation)",
+                "String toString()"
             };
             objectClass = new DartClass("Object");
             objectClass.AddConstructor();
@@ -142,39 +134,23 @@ namespace NClass.Dart
 
             // validAccessModifiers initialization
             validAccessModifiers = new Dictionary<AccessModifier, string>(6);
-            validAccessModifiers.Add(AccessModifier.Default, "Default");
-            validAccessModifiers.Add(AccessModifier.Public, "Public");
-            validAccessModifiers.Add(AccessModifier.ProtectedInternal, "Protected Internal");
-            validAccessModifiers.Add(AccessModifier.Internal, "Internal");
-            validAccessModifiers.Add(AccessModifier.Protected, "Protected");
-            validAccessModifiers.Add(AccessModifier.Private, "Private");
+            validAccessModifiers.Add(AccessModifier.Private, "_");
 
             // validClassModifiers initialization
             validClassModifiers = new Dictionary<ClassModifier, string>(3);
-            validClassModifiers.Add(ClassModifier.Abstract, "Abstract");
-            validClassModifiers.Add(ClassModifier.Sealed, "Sealed");
-            validClassModifiers.Add(ClassModifier.Static, "Static");
+            validClassModifiers.Add(ClassModifier.Abstract, "abstract");
+            validClassModifiers.Add(ClassModifier.Static, "static");
 
             // validFieldModifiers initialization
             validFieldModifiers = new Dictionary<FieldModifier, string>(5);
-            validFieldModifiers.Add(FieldModifier.Static, "Static");
-            validFieldModifiers.Add(FieldModifier.Readonly, "Readonly");
-            validFieldModifiers.Add(FieldModifier.Constant, "Const");
-            validFieldModifiers.Add(FieldModifier.Hider, "New");
-            validFieldModifiers.Add(FieldModifier.Volatile, "Volatile");
+            validFieldModifiers.Add(FieldModifier.Static, "static");
+
 
             // validOperationModifiers initialization
             validOperationModifiers = new Dictionary<OperationModifier, string>(8);
-            validOperationModifiers.Add(OperationModifier.Static, "Static");
-            validOperationModifiers.Add(OperationModifier.Hider, "New");
-            validOperationModifiers.Add(OperationModifier.Virtual, "Virtual");
-            validOperationModifiers.Add(OperationModifier.Abstract, "Abstract");
-            validOperationModifiers.Add(OperationModifier.Override, "Override");
-            validOperationModifiers.Add(OperationModifier.Sealed, "Sealed");
-            validOperationModifiers.Add(OperationModifier.Sealed | OperationModifier.Override,
-                "Sealed Override");
-            validOperationModifiers.Add(OperationModifier.Abstract | OperationModifier.Override,
-                "Abstract Override");
+            validOperationModifiers.Add(OperationModifier.Static, "static");
+            validOperationModifiers.Add(OperationModifier.Abstract, "abstract");
+            validOperationModifiers.Add(OperationModifier.Override, "override");
         }
 
         private DartLanguage()
@@ -193,7 +169,7 @@ namespace NClass.Dart
 
         public override string Name
         {
-            get { return "C#"; }
+            get { return "Dart"; }
         }
 
         public override string AssemblyName
@@ -237,7 +213,7 @@ namespace NClass.Dart
 
         public override string DefaultFileExtension
         {
-            get { return ".csd"; }
+            get { return ".dart"; }
         }
 
         public override bool IsValidModifier(AccessModifier modifier)
