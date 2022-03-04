@@ -108,7 +108,7 @@ namespace NClass.Dart
             "interface", "library", "mixin", "operator", "part", "set", "static", "typedef"
     };
         static readonly string[] typeKeywords = {
-            "bool", "double", "int", "Object", "String", "void"
+            "bool", "double", "int", "num", "Object", "String", "void", "Map", "List"
         };
         static readonly Dictionary<AccessModifier, string> validAccessModifiers;
         static readonly Dictionary<ClassModifier, string> validClassModifiers;
@@ -243,57 +243,10 @@ namespace NClass.Dart
         private static void ValidateOperationModifiers(Operation operation)
         {
             if (operation.IsStatic) {
-                if (operation.IsVirtual) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "virtual", "static"));
-                }
                 if (operation.IsAbstract) {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "abstract", "static"));
                 }
-                if (operation.IsOverride) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "override", "static"));
-                }
-                if (operation.IsSealed) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "sealed", "static"));
-                }
-            }
-
-            if (operation.IsVirtual) {
-                if (operation.IsAbstract) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "abstract", "virtual"));
-                }
-                if (operation.IsOverride) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "override", "virtual"));
-                }
-                if (operation.IsSealed) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "sealed", "virtual"));
-                }
-            }
-
-            if (operation.IsHider) {
-                if (operation.IsOverride) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "new", "override"));
-                }
-                if (operation.IsSealed) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "new", "sealed"));
-                }
-            }
-
-            if (operation.IsSealed) {
-                if (operation.IsAbstract) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "sealed", "abstract"));
-                }
-                if (!operation.IsOverride)
-                    operation.IsOverride = true;
             }
 
             if (operation.IsAbstract) {
@@ -313,25 +266,6 @@ namespace NClass.Dart
                 throw new BadSyntaxException(
                     Strings.ErrorInterfaceMemberAccess);
             }
-
-            if (operation.Access == AccessModifier.Private) {
-                if (operation.IsVirtual) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "private", "virtual"));
-                }
-                if (operation.IsAbstract) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "private", "abstract"));
-                }
-                if (operation.IsOverride) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "private", "override"));
-                }
-                if (operation.IsSealed) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "private", "sealed"));
-                }
-            }
         }
 
         /// <exception cref="BadSyntaxException">
@@ -342,20 +276,8 @@ namespace NClass.Dart
             if (field.IsConstant) {
                 if (field.IsStatic) {
                     throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "static", "const"));
+                        Strings.ErrorInvalidModifierCombination, "const", "static"));
                 }
-                if (field.IsReadonly) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "readonly", "const"));
-                }
-                if (field.IsVolatile) {
-                    throw new BadSyntaxException(string.Format(
-                        Strings.ErrorInvalidModifierCombination, "volatile", "const"));
-                }
-            }
-            if (field.IsReadonly && field.IsVolatile) {
-                throw new BadSyntaxException(string.Format(
-                    Strings.ErrorInvalidModifierCombination, "volatile", "readonly"));
             }
         }
 
@@ -448,29 +370,17 @@ namespace NClass.Dart
 
         public override AccessModifier TryParseAccessModifier(string value)
         {
-            if (value.Contains("protected") && value.Contains("internal"))
-                return AccessModifier.ProtectedInternal;
-            else
-                return base.TryParseAccessModifier(value);
+            return base.TryParseAccessModifier(value);
         }
 
         public override OperationModifier TryParseOperationModifier(string value)
         {
-            if (value.Contains("sealed"))
-                return OperationModifier.Sealed;
-            else
-                return base.TryParseOperationModifier(value);
+            return base.TryParseOperationModifier(value);
         }
 
         public override string GetAccessString(AccessModifier access, bool forCode)
         {
             switch (access) {
-                case AccessModifier.ProtectedInternal:
-                    if (forCode)
-                        return "protected internal";
-                    else
-                        return "Protected Internal";
-
                 case AccessModifier.Default:
                     if (forCode)
                         return "";
@@ -495,16 +405,10 @@ namespace NClass.Dart
             }
 
             StringBuilder builder = new StringBuilder(30);
-            if ((modifier & FieldModifier.Hider) != 0)
-                builder.Append(forCode ? "new " : "New, ");
             if ((modifier & FieldModifier.Constant) != 0)
-                builder.Append(forCode ? "const " : "Const, ");
+                builder.Append(forCode ? "const " : "const, ");
             if ((modifier & FieldModifier.Static) != 0)
-                builder.Append(forCode ? "static " : "Static, ");
-            if ((modifier & FieldModifier.Readonly) != 0)
-                builder.Append(forCode ? "readonly " : "Readonly, ");
-            if ((modifier & FieldModifier.Volatile) != 0)
-                builder.Append(forCode ? "volatile " : "Volatile, ");
+                builder.Append(forCode ? "static " : "static, ");
 
             if (forCode)
                 builder.Remove(builder.Length - 1, 1);
@@ -524,18 +428,10 @@ namespace NClass.Dart
             }
 
             StringBuilder builder = new StringBuilder(30);
-            if ((modifier & OperationModifier.Hider) != 0)
-                builder.Append(forCode ? "new " : "New, ");
             if ((modifier & OperationModifier.Static) != 0)
-                builder.Append(forCode ? "static " : "Static, ");
-            if ((modifier & OperationModifier.Virtual) != 0)
-                builder.Append(forCode ? "virtual " : "Virtual, ");
+                builder.Append(forCode ? "static " : "static, ");
             if ((modifier & OperationModifier.Abstract) != 0)
-                builder.Append(forCode ? "abstract " : "Abstract, ");
-            if ((modifier & OperationModifier.Sealed) != 0)
-                builder.Append(forCode ? "sealed " : "Sealed, ");
-            if ((modifier & OperationModifier.Override) != 0)
-                builder.Append(forCode ? "override " : "Override, ");
+                builder.Append(forCode ? "abstract " : "abstract, ");
 
             if (forCode)
                 builder.Remove(builder.Length - 1, 1);
