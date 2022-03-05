@@ -8,7 +8,7 @@ namespace NClass.Dart
     public class DartMethodDeclaration : IDartMethodDeclaration
     {
         const string OverloadableOperators =
-            @"(\+|-|\*|/|%|&|\||\^|!|~|\+\+|--|<<|>>|==|!=|>|<|>=|<=| true| false)";
+            @"(\+|-|\*|/|%|&|\||\^|!|~|\+\+|--|<<|>>|==|!=|>|<|>=|<=)";
 
         // operator <operator>
         const string OperatorPattern = @"operator\s*(?<operator>" + OverloadableOperators + ")";

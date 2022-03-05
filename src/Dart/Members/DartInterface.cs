@@ -131,10 +131,7 @@ namespace NClass.Dart
         /// </exception>
         public override Event AddEvent()
         {
-            Event newEvent = new DartEvent(this);
-
-            AddOperation(newEvent);
-            return newEvent;
+            return null;
         }
 
         public override string GetDeclaration()

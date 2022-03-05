@@ -7,7 +7,7 @@ namespace NClass.Dart
 {
     public class DartFieldDeclaration : IDartFieldDeclaration
     {
-        const string ModifiersPattern = @"((?<modifier>static|readonly|const|new|volatile)\s+)*";
+        const string ModifiersPattern = @"((?<modifier>static|get|set|const)\s+)*";
         const string InitValuePattern = @"(?<initvalue>[^\s;](.*[^\s;])?)";
 
         // [<access>] [<modifiers>] <type> <name> [= <initvalue>]
@@ -64,14 +64,29 @@ namespace NClass.Dart
             get { return match.Groups["initvalue"].Value; }
         }
 
+        public bool IsHider
+        {
+            get { return false; }
+        }
+
+        public bool IsReadonly
+        {
+            get { return false; }
+        }
+
+        public bool IsVolatile
+        {
+            get { return false; }
+        }
+
         public bool IsStatic
         {
             get { return modifiers.Contains("static"); }
         }
 
-        public bool IsReadonly
+        public bool IsGetter
         {
-            get { return modifiers.Contains("readonly"); }
+            get { return modifiers.Contains("get"); }
         }
 
         public bool IsConstant
@@ -79,15 +94,12 @@ namespace NClass.Dart
             get { return modifiers.Contains("const"); }
         }
 
-        public bool IsHider
+        public bool IsSetter
         {
-            get { return modifiers.Contains("new"); }
+            get { return modifiers.Contains("set"); }
         }
 
-        public bool IsVolatile
-        {
-            get { return modifiers.Contains("volatile"); }
-        }
+ 
 
         private static AccessModifier ParseAccessModifier(string value)
         {

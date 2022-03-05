@@ -10,7 +10,6 @@ namespace NClass.Dart
         // [this] [<modifiers>] <type> <name> [,]
         const string ParameterPattern =
             @"(?<this>this)?\s*" +
-            @"(?<modifier>out|ref|params)?(?(modifier)\s+|)" +
             @"(?<type>" + DartLanguage.GenericTypePattern2 + @")\s+" +
             @"(?<name>" + DartLanguage.NamePattern + @")" +
             @"(\s*=\s*(?<defval>([^,""]+|""(\\""|[^""])*"")))?";
