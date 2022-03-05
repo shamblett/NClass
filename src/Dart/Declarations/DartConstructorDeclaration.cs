@@ -9,6 +9,7 @@ namespace NClass.Dart
         // [<access>] [static] <name>([<args>])
         const string ConstructorPattern =
             @"^\s*" + DartLanguage.AccessPattern + @"(?<static>static\s+)?" +
+            @"^\s*" + DartLanguage.AccessPattern + @"(?<factory>factory\s+)?" +
             @"(?<name>" + DartLanguage.NamePattern + ")" +
             @"\((?(static)|(?<args>.*))\)" + DartLanguage.DeclarationEnding;
 
@@ -56,6 +57,11 @@ namespace NClass.Dart
         public bool IsStatic
         {
             get { return match.Groups["static"].Success; }
+        }
+
+        public bool IsFactory
+        {
+            get { return match.Groups["factory"].Success; }
         }
     }
 }

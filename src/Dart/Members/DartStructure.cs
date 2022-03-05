@@ -168,12 +168,8 @@ namespace NClass.Dart
         /// </exception>
         public override Event AddEvent()
         {
-            Event newEvent = new DartEvent(this);
 
-            newEvent.AccessModifier = AccessModifier.Public;
-            AddOperation(newEvent);
-
-            return newEvent;
+            return null;
         }
 
         /// <exception cref="RelationshipException">

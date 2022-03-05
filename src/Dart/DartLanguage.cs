@@ -79,13 +79,12 @@ namespace NClass.Dart
             OperationNamePattern + @"(\s*" + BaseGenericPattern + ")?";
 
 
-        // [static | virtual | abstract | override | sealed | new]
+        // [static | abstract | get | set]
         internal const string OperationModifiersPattern =
-            @"((?<modifier>static|virtual|abstract|override|sealed|new)\s+)*";
+            @"((?<modifier>static|abstract|get|set)\s+)*";
 
-        // [public | protected internal | internal protected | internal | protected | private]
-        internal const string AccessPattern = @"((?<access>public|protected\s+internal|" +
-            @"internal\s+protected|internal|protected|private)\s+)*";
+        // [ _ ]
+        internal const string AccessPattern =@"((?<access>_";
 
         // For validating identifier names.
         private const string ClosedNamePattern = @"^\s*(?<name>" + NamePattern + @")\s*$";

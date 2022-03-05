@@ -172,13 +172,7 @@ namespace NClass.Dart
             return constructor;
         }
 
-        public override Destructor AddDestructor()
-        {
-            Destructor destructor = new DartDestructor(this);
-
-            AddOperation(destructor);
-            return destructor;
-        }
+        public override Destructor AddDestructor() { return null; }
 
         /// <exception cref="BadSyntaxException">
         /// The <paramref name="name"/> does not fit to the syntax.
@@ -213,13 +207,7 @@ namespace NClass.Dart
         /// </exception>
         public override Event AddEvent()
         {
-            Event newEvent = new DartEvent(this);
-
-            newEvent.AccessModifier = AccessModifier.Public;
-            newEvent.IsStatic = (Modifier == ClassModifier.Static);
-
-            AddOperation(newEvent);
-            return newEvent;
+            return null;
         }
 
         public override string GetDeclaration()

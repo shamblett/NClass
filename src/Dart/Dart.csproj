@@ -67,18 +67,13 @@
   <ItemGroup>
     <Compile Include="Declarations\DartArgumentListDeclaration.cs" />
     <Compile Include="Declarations\DartConstructorDeclaration.cs" />
-    <Compile Include="Declarations\DartDestructorDeclaration.cs" />
-    <Compile Include="Declarations\DartEventDeclaration.cs" />
     <Compile Include="Declarations\DartFieldDeclaration.cs" />
     <Compile Include="Declarations\DartMethodNameDeclaration.cs" />
     <Compile Include="Declarations\DartParameterDeclaration.cs" />
     <Compile Include="Declarations\DartPropertyDeclaration.cs" />
-    <Compile Include="Declarations\DartEventNameDeclaration.cs" />
     <Compile Include="Declarations\DartPropertyNameDeclaration.cs" />
     <Compile Include="Declarations\IDartArgumentListDeclaration.cs" />
-    <Compile Include="Declarations\IDartDestructorDeclaration.cs" />
     <Compile Include="Declarations\IDartConstructorDeclaration.cs" />
-    <Compile Include="Declarations\IDartEventDeclaration.cs" />
     <Compile Include="Declarations\IDartFieldDeclaration.cs" />
     <Compile Include="Declarations\IDartMethodDeclaration.cs" />
     <Compile Include="Declarations\DartMethodDeclaration.cs" />
@@ -95,8 +90,6 @@
     <Compile Include="Members\DartMethod.cs" />
     <Compile Include="Members\DartNamespace.cs" />
     <Compile Include="Members\DartParameter.cs" />
-    <Compile Include="Members\DartEvent.cs" />
-    <Compile Include="Members\DartDestructor.cs" />
     <Compile Include="Members\DartDelegate.cs" />
     <Compile Include="Members\DartProperty.cs" />
     <Compile Include="Members\DartStructure.cs" />

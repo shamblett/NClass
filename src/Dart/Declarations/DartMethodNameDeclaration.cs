@@ -7,7 +7,7 @@ namespace NClass.Dart
     public class DartMethodNameDeclaration
     {
         const string OverloadableOperators =
-            @"(\+|-|\*|/|%|&|\||\^|!|~|\+\+|--|<<|>>|==|!=|>|<|>=|<=| true| false)";
+            @"(\+|-|\*|/|%|&|\||\^|!|~|\+\+|--|<<|>>|==|!=|>|<|>=|<=)";
 
         // [explicit | implicit] operator <operator> | <name>
         const string MethodNamePattern =
