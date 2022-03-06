@@ -23,6 +23,7 @@ using System.Windows.Forms;
 using NClass.Core;
 using NClass.Core.UndoRedo;
 using NClass.CSharp;
+using NClass.Dart;
 using NClass.Java;
 using NClass.DiagramEditor;
 using NClass.DiagramEditor.ClassDiagram;
@@ -590,6 +591,17 @@ namespace NClass.GUI
                 var diagram = new ClassDiagram(CSharpLanguage.Instance);
                 Workspace.Default.ActiveProject.Add(diagram);
                 Settings.Default.DefaultLanguageName = CSharpLanguage.Instance.AssemblyName;
+            }
+        }
+
+        private void mnuNewDartDiagram_Click(object sender, EventArgs e)
+        {
+            if (Workspace.Default.HasActiveProject)
+            {
+                ShowModelExplorer = true;
+                var diagram = new ClassDiagram(DartLanguage.Instance);
+                Workspace.Default.ActiveProject.Add(diagram);
+                Settings.Default.DefaultLanguageName = DartLanguage.Instance.AssemblyName;
             }
         }
 
