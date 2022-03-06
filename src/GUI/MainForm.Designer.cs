@@ -112,6 +112,7 @@ namespace NClass.GUI
             this.toolSepProject = new System.Windows.Forms.ToolStripSeparator();
             this.toolNewCSharpDiagram = new System.Windows.Forms.ToolStripMenuItem();
             this.toolNewJavaDiagram = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolNewDartDiagram = new System.Windows.Forms.ToolStripMenuItem();
             this.toolOpen = new System.Windows.Forms.ToolStripSplitButton();
             this.toolRecentFile1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolRecentFile2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -890,6 +891,7 @@ namespace NClass.GUI
             this.toolNewProject,
             this.toolSepProject,
             this.toolNewCSharpDiagram,
+            this.toolNewDartDiagram,
             this.toolNewJavaDiagram});
             this.toolNew.Image = global::NClass.GUI.Properties.Resources.NewDocument;
             this.toolNew.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -925,6 +927,14 @@ namespace NClass.GUI
             this.toolNewJavaDiagram.Size = new System.Drawing.Size(143, 22);
             this.toolNewJavaDiagram.Text = "Java diagram";
             this.toolNewJavaDiagram.Click += new System.EventHandler(this.mnuNewJavaDiagram_Click);
+            // 
+            // toolNewDartDiagram
+            // 
+            this.toolNewDartDiagram.Enabled = false;
+            this.toolNewDartDiagram.Name = "toolNewDartDiagram";
+            this.toolNewDartDiagram.Size = new System.Drawing.Size(143, 22);
+            this.toolNewDartDiagram.Text = "Dart diagram";
+            this.toolNewDartDiagram.Click += new System.EventHandler(this.mnuNewDartDiagram_Click);
             // 
             // toolOpen
             // 
@@ -1239,6 +1249,7 @@ namespace NClass.GUI
         private System.Windows.Forms.ToolStripSeparator toolSepProject;
         private System.Windows.Forms.ToolStripMenuItem toolNewCSharpDiagram;
         private System.Windows.Forms.ToolStripMenuItem toolNewJavaDiagram;
+        private System.Windows.Forms.ToolStripMenuItem toolNewDartDiagram;
         private System.Windows.Forms.ToolStripSeparator mnuSepClose;
         private System.Windows.Forms.ToolStripMenuItem mnuCloseProject;
         private System.Windows.Forms.ToolStripMenuItem mnuCloseAllProjects;
