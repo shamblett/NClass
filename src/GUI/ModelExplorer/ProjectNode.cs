@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using NClass.Core;
 using NClass.Java;
 using NClass.CSharp;
+using NClass.Dart;
 using NClass.GUI.Properties;
 using NClass.Translations;
 using NClass.DiagramEditor;
@@ -204,8 +205,15 @@ namespace NClass.GUI.ModelExplorer
             Settings.Default.DefaultLanguageName = JavaLanguage.Instance.AssemblyName;
             project.Add(diagram);
         }
+        private static void newDartDiagram_Click(object sender, EventArgs e)
+        {
+            ToolStripItem menuItem = (ToolStripItem)sender;
+            Project project = ((ProjectNode)menuItem.OwnerItem.Owner.Tag).Project;
 
-        // SJH TODO add new Dart diagram
+            IDiagram diagram = new ClassDiagram(DartLanguage.Instance);
+            project.Add(diagram);
+            Settings.Default.DefaultLanguageName = DartLanguage.Instance.AssemblyName;
+        }
 
         private static void newUseCaseDiagram_Click(object sender, EventArgs e)
         {

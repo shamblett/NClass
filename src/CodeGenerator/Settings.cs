@@ -47,6 +47,7 @@ namespace NClass.CodeGenerator
             ImportList.Clear();
             ImportList.Add(CSharp.CSharpLanguage.Instance, CSharpImportList);
             ImportList.Add(Java.JavaLanguage.Instance, JavaImportList);
+            ImportList.Add(Dart.DartLanguage.Instance, DartImportList);
 
             if (string.IsNullOrEmpty(DestinationPath))
             {
