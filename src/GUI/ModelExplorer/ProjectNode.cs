@@ -39,6 +39,7 @@ namespace NClass.GUI.ModelExplorer
             contextMenu.Items.AddRange(new ToolStripItem[] {
                 new ToolStripMenuItem(Strings.MenuAddNew, Resources.NewDocument,
                     new ToolStripMenuItem(Strings.MenuCSharpDiagram, null, newCSharpDiagram_Click),
+                    new ToolStripMenuItem(Strings.MenuDartDiagram, null, newDartDiagram_Click),
                     new ToolStripMenuItem(Strings.MenuJavaDiagram, null, newJavaDiagram_Click),
                     new ToolStripSeparator(),
                     new ToolStripMenuItem(Strings.MenuUseCaseDiagram, null, newUseCaseDiagram_Click)

@@ -244,6 +244,7 @@ namespace NClass.GUI
             mnuNewProject.Text = Strings.MenuProject;
             mnuNewCSharpDiagram.Text = Strings.MenuCSharpDiagram;
             mnuNewJavaDiagram.Text = Strings.MenuJavaDiagram;
+            mnuNewDartDiagram.Text = Strings.MenuDartDiagram;
             mnuNewUseCaseDiagram.Text = Strings.MenuUseCaseDiagram;
             mnuOpen.Text = Strings.MenuOpen;
             mnuOpenFile.Text = Strings.MenuOpenFile;
@@ -286,6 +287,7 @@ namespace NClass.GUI
             // Toolbar
             toolNewCSharpDiagram.Text = Strings.MenuCSharpDiagram;
             toolNewJavaDiagram.Text = Strings.MenuJavaDiagram;
+            toolNewDartDiagram.Text = Strings.MenuDartDiagram;
             toolSave.Text = Strings.Save;
             toolPrint.Text = Strings.Print;
             toolCut.Text = Strings.Cut;
@@ -358,6 +360,7 @@ namespace NClass.GUI
         {
             toolNewCSharpDiagram.Enabled = Workspace.Default.HasActiveProject;
             toolNewJavaDiagram.Enabled = Workspace.Default.HasActiveProject;
+            toolNewDartDiagram.Enabled = Workspace.Default.HasActiveProject;
             toolSave.Enabled = Workspace.Default.HasActiveProject;
             toolPrint.Enabled = docManager.HasDocument;
             toolZoom.Enabled = docManager.HasDocument;
@@ -912,6 +915,7 @@ namespace NClass.GUI
         {
             toolNewCSharpDiagram.Enabled = Workspace.Default.HasActiveProject;
             toolNewJavaDiagram.Enabled = Workspace.Default.HasActiveProject;
+            toolNewDartDiagram.Enabled = Workspace.Default.HasActiveProject;
         }
 
         private void toolOpen_DropDownOpening(object sender, EventArgs e)
