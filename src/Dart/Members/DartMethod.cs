@@ -152,8 +152,6 @@ namespace NClass.Dart
             }
             set
             {
-                if (!value && IsOperator)
-                    throw new BadSyntaxException(Strings.ErrorOperatorMustBeStatic);
 
                 base.IsStatic = value;
             }

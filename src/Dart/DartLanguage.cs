@@ -81,10 +81,10 @@ namespace NClass.Dart
 
         // [static | abstract | get | set]
         internal const string OperationModifiersPattern =
-            @"((?<modifier>static|abstract|get|set)\s+)*";
+            @"((?<modifier>static|abstract)\s+)*";
 
         // [ _ ]
-        internal const string AccessPattern =@"((?<access>_";
+        internal const string AccessPattern =@"((?<access>_)\s+)*";
 
         // For validating identifier names.
         private const string ClosedNamePattern = @"^\s*(?<name>" + NamePattern + @")\s*$";
@@ -120,7 +120,7 @@ namespace NClass.Dart
         {
             // objectClass initialization
             string[] objectMethods = {
-                "bool operator==(object other)",
+                "bool operator ==(object other)",
                 "int get hashCode",
                 "String get runTimeType",
                 "dynamic noSuchMethod(Invocation invocation)",

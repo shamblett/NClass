@@ -14,11 +14,10 @@ namespace NClass.Dart
         const string OperatorPattern = @"operator\s*(?<operator>" + OverloadableOperators + ")";
 
         // {implicit | explicit} operator <operator>
-        const string ConvOperatorPattern = @"(?<convop>implicit|explicit)" +
-                                                                             @"\s+operator\s+(?<operator>" + DartLanguage.GenericTypePattern2 + ")";
+        const string ConvOperatorPattern = @"(?<convop>implicit|explicit)" + @"\s+operator\s+(?<operator>" + DartLanguage.GenericTypePattern2 + ")";
 
         // [<access>] [<modifier>]
-        // { {explicit | implicit | <type>} operator <operator>(<args>) | <type> <name>(<args>) }
+        // { {<type>} operator <operator>(<args>) | <type> <name>(<args>) | <type> get <name> | set <name>(<args>)}
         const string MethodPattern =
             @"^\s*" + DartLanguage.AccessPattern + DartLanguage.OperationModifiersPattern +
             @"((?<name>" + ConvOperatorPattern + ")|" +
