@@ -26,7 +26,8 @@ namespace NClass.Dart
             @"\s*\((?<args>.*)\)" + DartLanguage.DeclarationEnding;
         
         static readonly Regex methodRegex = new Regex(MethodPattern, RegexOptions.ExplicitCapture);
-
+        static readonly Regex getRegex = new Regex(DartLanguage.GetPattern);
+        static readonly Regex setRegex = new Regex(DartLanguage.SetPattern);
         readonly Match match;
         readonly HashSet<string> modifiers;
 
@@ -44,7 +45,15 @@ namespace NClass.Dart
         public static DartMethodDeclaration Create(string declaration)
         {
             var match = methodRegex.Match(declaration);
-            return new DartMethodDeclaration(match);
+            if (match.Success)
+                return new DartMethodDeclaration(match);
+            match = getRegex.Match(declaration);
+            if (match.Success)
+                return new DartMethodDeclaration(match);
+            match = setRegex.Match(declaration);
+            if (match.Success)
+                return new DartMethodDeclaration(match);
+            return null;
         }
 
         public string Name
