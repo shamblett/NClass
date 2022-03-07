@@ -39,8 +39,14 @@ namespace NClass.Dart
         // [,][][,,]
         private const string ArrayPattern = @"(\s*\[\s*(,\s*)*\])*";
 
+        // get
+        public const string GetPattern = @"\s*get\s*";
+
+        // get
+        public const string SetPattern = @"\s*set\s*";
+
         // System.String[]
-        internal const string BaseTypePattern = TypeNamePattern + @"\??" + ArrayPattern;
+        internal const string BaseTypePattern = TypeNamePattern + @"\??" + GetPattern;
 
         // <System.String[], System.String[]>
         private const string GenericPattern =
@@ -48,7 +54,7 @@ namespace NClass.Dart
         
         // System.Collections.Generic.List<System.String[], System.String[]>[]
         internal const string GenericTypePattern =
-            TypeNamePattern + @"(\s*" + GenericPattern + @")?\??" + ArrayPattern;
+            TypeNamePattern + @"(\s*" + GenericPattern + @")?\??";
         
         // <List<int>[], List<string>>
         private const string GenericPattern2 =
@@ -56,7 +62,7 @@ namespace NClass.Dart
         
         // System.Collections.Generic.List<List<int>[]>[]
         internal const string GenericTypePattern2 =
-            TypeNamePattern + @"(\s*" + GenericPattern2 + @")?\??" + ArrayPattern;
+            TypeNamePattern + @"(\s*" + GenericPattern2 + @")?\??";
 
 
         // Name
@@ -103,7 +109,7 @@ namespace NClass.Dart
 
         static readonly string[] reservedNames = {
             "assert", "break", "case", "catch", "class", "const", "continue", "default", "do", "else", "enum", "extends", "false", "final", "finally", "for", "if", "in", "is", "new", "null", "rethrow", "return", "super", "switch", 
-            "this", "throw", "true", "try", "var", "void", "while", "with",  "abstract", "as", "covariant", "deferred", "dynamic", "export", "extension", "external", "factory", "function", "get", "implements", "import", 
+            "this", "throw", "true", "try", "var", "void", "while", "with",  "abstract", "as", "covariant", "deferred", "export", "extension", "external", "factory", "function", "get", "implements", "import", 
             "interface", "library", "mixin", "operator", "part", "set", "static", "typedef"
     };
         static readonly string[] typeKeywords = {

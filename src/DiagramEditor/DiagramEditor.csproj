@@ -445,6 +445,8 @@
     <None Include="Resources\boundary.bmp" />
     <None Include="Resources\undo.png" />
     <None Include="Resources\redo.png" />
+    <Content Include="Resources\Bitmap1.bmp" />
+    <Content Include="Resources\dart.bmp" />
     <Content Include="Resources\usecase_diagram.bmp" />
   </ItemGroup>
   <ItemGroup />
