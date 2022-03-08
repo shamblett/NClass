@@ -109,11 +109,11 @@ namespace NClass.Dart
 
         static readonly string[] reservedNames = {
             "assert", "break", "case", "catch", "class", "const", "continue", "default", "do", "else", "enum", "extends", "false", "final", "finally", "for", "if", "in", "is", "new", "null", "rethrow", "return", "super", "switch", 
-            "this", "throw", "true", "try", "var", "void", "while", "with",  "abstract", "as", "covariant", "deferred", "export", "extension", "external", "factory", "function", "get", "implements", "import", 
+            "this", "throw", "true", "try", "var", "while", "with", "abstract", "as", "covariant", "deferred", "export", "extension", "external", "factory", "function", "get", "implements", "import", 
             "interface", "library", "mixin", "operator", "part", "set", "static", "typedef"
     };
         static readonly string[] typeKeywords = {
-            "bool", "double", "int", "num", "Object", "String", "void", "Map", "List"
+            "bool", "double", "int", "num", "Object", "String", "void", "Map", "List, dynamic, null"
         };
         static readonly Dictionary<AccessModifier, string> validAccessModifiers;
         static readonly Dictionary<ClassModifier, string> validClassModifiers;
