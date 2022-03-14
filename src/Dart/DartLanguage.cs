@@ -89,8 +89,8 @@ namespace NClass.Dart
         internal const string OperationModifiersPattern =
             @"((?<modifier>static|abstract)\s+)*";
 
-        // [ _ ]
-        internal const string AccessPattern =@"((?<access>_)\s+)*";
+        // [ private]
+        internal const string AccessPattern =@"((?<access>private)\s+)*";
 
         // For validating identifier names.
         private const string ClosedNamePattern = @"^\s*(?<name>" + NamePattern + @")\s*$";
@@ -139,23 +139,24 @@ namespace NClass.Dart
 
             // validAccessModifiers initialization
             validAccessModifiers = new Dictionary<AccessModifier, string>(6);
+            validAccessModifiers.Add(AccessModifier.Public, "");
             validAccessModifiers.Add(AccessModifier.Private, "_");
 
             // validClassModifiers initialization
             validClassModifiers = new Dictionary<ClassModifier, string>(3);
-            validClassModifiers.Add(ClassModifier.Abstract, "abstract");
-            validClassModifiers.Add(ClassModifier.Static, "static");
+            validClassModifiers.Add(ClassModifier.Abstract, "Abstract");
+            validClassModifiers.Add(ClassModifier.Static, "Static");
 
             // validFieldModifiers initialization
             validFieldModifiers = new Dictionary<FieldModifier, string>(5);
-            validFieldModifiers.Add(FieldModifier.Static, "static");
+            validFieldModifiers.Add(FieldModifier.Static, "Static");
 
 
             // validOperationModifiers initialization
             validOperationModifiers = new Dictionary<OperationModifier, string>(8);
-            validOperationModifiers.Add(OperationModifier.Static, "static");
-            validOperationModifiers.Add(OperationModifier.Abstract, "abstract");
-            validOperationModifiers.Add(OperationModifier.Override, "override");
+            validOperationModifiers.Add(OperationModifier.Static, "Static");
+            validOperationModifiers.Add(OperationModifier.Abstract, "Abstract");
+            validOperationModifiers.Add(OperationModifier.Override, "Override");
         }
 
         private DartLanguage()
@@ -223,17 +224,40 @@ namespace NClass.Dart
 
         public override bool IsValidModifier(AccessModifier modifier)
         {
-            return true;
+            if ((modifier == AccessModifier.Default) ||
+                (modifier == AccessModifier.Private) ||
+                (modifier == AccessModifier.Public))
+            {
+                return true;
+            }
+
+            return false;
         }
+
 
         public override bool IsValidModifier(FieldModifier modifier)
         {
-            return true;
+            if ((modifier == FieldModifier.Static) ||
+                (modifier == FieldModifier.Constant) ||
+                (modifier == FieldModifier.None))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public override bool IsValidModifier(OperationModifier modifier)
         {
-            return true;
+            if ((modifier == OperationModifier.Abstract) ||
+                (modifier == OperationModifier.None) ||
+                (modifier == OperationModifier.Override) ||
+                (modifier == OperationModifier.Static))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <exception cref="BadSyntaxException">
