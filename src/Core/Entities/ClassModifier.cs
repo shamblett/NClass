@@ -35,6 +35,12 @@ namespace NClass.Core
         /// <summary>
         /// Indicates that a class contains only static members.
         /// </summary>
-        Static
+        Static,
+
+
+        /// <summary>
+        /// Indicates that a class is a Mixin(Dart only).
+        /// </summary>
+        Mixin
     }
 }
