@@ -551,7 +551,7 @@ namespace NClass.Java
 
         public override bool IsOopLanguage
         {
-            get { return true; }
+            get { return false; }
         }
     }
 }
