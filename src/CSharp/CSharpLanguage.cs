@@ -616,7 +616,7 @@ namespace NClass.CSharp
 
         public override bool IsOopLanguage
         {
-            get { return true; }
+            get { return false; }
         }
     }
 }
