@@ -54,5 +54,10 @@ namespace NClass.Core
         {
             get { return true; }
         }
+
+        public override bool IsOopLanguage
+        {
+            get { return true; }
+        }
     }
 }

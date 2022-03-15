@@ -63,6 +63,11 @@ namespace NClass.Core
             get;
         }
 
+        public abstract bool IsOopLanguage
+        {
+            get;
+        }
+
         public abstract bool SupportsInterfaces
         {
             get;

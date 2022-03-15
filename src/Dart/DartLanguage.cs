@@ -90,7 +90,7 @@ namespace NClass.Dart
             @"((?<modifier>static|abstract)\s+)*";
 
         // [ private]
-        internal const string AccessPattern =@"((?<access>private)\s+)*";
+        internal const string AccessPattern =@"((?<access>private|public)\s+)*";
 
         // For validating identifier names.
         private const string ClosedNamePattern = @"^\s*(?<name>" + NamePattern + @")\s*$";
@@ -132,6 +132,7 @@ namespace NClass.Dart
                 "dynamic noSuchMethod(Invocation invocation)",
                 "String toString()"
             };
+
             objectClass = new DartClass("Object");
             objectClass.AddConstructor();
             foreach (string methodDeclaration in objectMethods)
@@ -139,17 +140,19 @@ namespace NClass.Dart
 
             // validAccessModifiers initialization
             validAccessModifiers = new Dictionary<AccessModifier, string>(6);
-            validAccessModifiers.Add(AccessModifier.Public, "");
-            validAccessModifiers.Add(AccessModifier.Private, "_");
+            validAccessModifiers.Add(AccessModifier.Public, "Public");
+            validAccessModifiers.Add(AccessModifier.Private, "Private");
 
             // validClassModifiers initialization
             validClassModifiers = new Dictionary<ClassModifier, string>(3);
             validClassModifiers.Add(ClassModifier.Abstract, "Abstract");
             validClassModifiers.Add(ClassModifier.Static, "Static");
+            validClassModifiers.Add(ClassModifier.Mixin, "Mixin");
 
             // validFieldModifiers initialization
             validFieldModifiers = new Dictionary<FieldModifier, string>(5);
             validFieldModifiers.Add(FieldModifier.Static, "Static");
+            validFieldModifiers.Add(FieldModifier.Constant, "Const");
 
 
             // validOperationModifiers initialization

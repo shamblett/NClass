@@ -548,5 +548,10 @@ namespace NClass.Java
         {
             return new JavaArgumentList();
         }
+
+        public override bool IsOopLanguage
+        {
+            get { return true; }
+        }
     }
 }

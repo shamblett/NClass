@@ -167,6 +167,17 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
             {
                 toolPrivate.Visible = false;
             }
+            // Private Oop language
+            if (language.IsOopLanguage && language.ValidAccessModifiers.ContainsKey(AccessModifier.Private))
+            {
+                toolPrivate.Visible = true;
+                toolPrivate.Text = language.ValidAccessModifiers[AccessModifier.Private];
+                toolPrivate.Image = Icons.GetImage(type.EntityType, AccessModifier.Private);
+            }
+            else
+            {
+                toolPrivate.Visible = false;
+            }
             // Default
             if (language.ValidAccessModifiers.ContainsKey(AccessModifier.Default))
             {

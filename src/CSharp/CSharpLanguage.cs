@@ -613,5 +613,10 @@ namespace NClass.CSharp
         {
             return new CSharpArgumentList();
         }
+
+        public override bool IsOopLanguage
+        {
+            get { return true; }
+        }
     }
 }
