@@ -224,6 +224,16 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
                 {
                     toolSealed.Visible = false;
                 }
+                // Mixin modifier
+                if (language.ValidClassModifiers.ContainsKey(ClassModifier.Mixin))
+                {
+                    toolMixin.Visible = true;
+                    toolMixin.Text = language.ValidClassModifiers[ClassModifier.Mixin];
+                }
+                else
+                {
+                    toolSealed.Visible = false;
+                }
                 // Static modifier
                 if (language.ValidClassModifiers.ContainsKey(ClassModifier.Static))
                 {
@@ -536,6 +546,11 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
         private void toolStatic_Click(object sender, EventArgs e)
         {
             ChangeModifier(ClassModifier.Static);
+        }
+
+        private void toolMixin_Click(object sender, EventArgs e)
+        {
+            ChangeModifier(ClassModifier.Mixin);
         }
 
         private void AddNewMember()
