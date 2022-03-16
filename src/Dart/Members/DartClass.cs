@@ -48,7 +48,7 @@ namespace NClass.Dart
             {
                 if (IsTypeNested ||
                     value == AccessModifier.Default ||
-                    value == AccessModifier.Internal ||
+                    value == AccessModifier.Private ||
                     value == AccessModifier.Public)
                 {
                     base.AccessModifier = value;

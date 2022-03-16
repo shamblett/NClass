@@ -14,8 +14,8 @@
       </Entity>
       <Entity type="Class">
         <Name>Private</Name>
-        <Access>Public</Access>
-        <Location left="248" top="27" />
+        <Access>Private</Access>
+        <Location left="245" top="30" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
