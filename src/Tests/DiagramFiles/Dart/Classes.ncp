@@ -1,0 +1,51 @@
+<Project>
+  <Name>Classes</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.1, Culture=neutral, PublicKeyToken=null">
+    <Name>Access</Name>
+    <Language>Dart</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Public</Name>
+        <Access>Public</Access>
+        <Location left="47" top="27" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Private</Name>
+        <Access>Public</Access>
+        <Location left="248" top="27" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Abstract</Name>
+        <Access>Public</Access>
+        <Location left="449" top="27" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Static</Name>
+        <Access>Public</Access>
+        <Location left="644" top="30" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Mixin</Name>
+        <Access>Public</Access>
+        <Location left="53" top="294" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Containers />
+    <Relationships />
+  </ProjectItem>
+</Project>
