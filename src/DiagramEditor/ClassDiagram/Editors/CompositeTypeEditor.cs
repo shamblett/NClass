@@ -232,7 +232,7 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
                 }
                 else
                 {
-                    toolSealed.Visible = false;
+                    toolMixin.Visible = false;
                 }
                 // Static modifier
                 if (language.ValidClassModifiers.ContainsKey(ClassModifier.Static))
