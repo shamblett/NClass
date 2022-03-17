@@ -142,6 +142,7 @@ namespace NClass.Dart
             validAccessModifiers = new Dictionary<AccessModifier, string>(6);
             validAccessModifiers.Add(AccessModifier.Public, "Public");
             validAccessModifiers.Add(AccessModifier.Private, "Private");
+            validAccessModifiers.Add(AccessModifier.Default, "Default");
 
             // validClassModifiers initialization
             validClassModifiers = new Dictionary<ClassModifier, string>(3);
