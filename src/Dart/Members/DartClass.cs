@@ -78,7 +78,7 @@ namespace NClass.Dart
 
         public override AccessModifier DefaultAccess
         {
-            get { return AccessModifier.Internal; }
+            get { return AccessModifier.Public; }
         }
 
         public override AccessModifier DefaultMemberAccess
@@ -93,12 +93,12 @@ namespace NClass.Dart
 
         public override bool SupportsEvents
         {
-            get { return true; }
+            get { return false; }
         }
 
         public override bool SupportsDestructors
         {
-            get { return true; }
+            get { return false; }
         }
 
         /// <exception cref="ArgumentException">
@@ -143,7 +143,7 @@ namespace NClass.Dart
         public override void AddInterface(InterfaceType interfaceType)
         {
             if (!(interfaceType is DartInterface))
-                throw new RelationshipException(string.Format(Strings.ErrorInterfaceLanguage, "C#"));
+                throw new RelationshipException(string.Format(Strings.ErrorInterfaceLanguage, "Dart"));
 
             base.AddInterface(interfaceType);
         }
@@ -183,6 +183,7 @@ namespace NClass.Dart
 
             method.AccessModifier = AccessModifier.Public;
             method.IsStatic = (Modifier == ClassModifier.Static);
+            method.IsAbstract = (Modifier == ClassModifier.Abstract);
 
             AddOperation(method);
             return method;
@@ -197,6 +198,7 @@ namespace NClass.Dart
 
             property.AccessModifier = AccessModifier.Public;
             property.IsStatic = (Modifier == ClassModifier.Static);
+            property.IsAbstract = (Modifier == ClassModifier.Abstract);
 
             AddOperation(property);
             return property;
