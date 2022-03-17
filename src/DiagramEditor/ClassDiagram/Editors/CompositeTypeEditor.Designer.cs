@@ -183,10 +183,10 @@
             // 
             // toolMixin
             // 
-            this.toolSealed.Name = "toolMixin";
-            this.toolSealed.Size = new System.Drawing.Size(126, 22);
-            this.toolSealed.Text = "Mixin";
-            this.toolSealed.Click += new System.EventHandler(this.toolMixin_Click);
+            this.toolMixin.Name = "toolMixin";
+            this.toolMixin.Size = new System.Drawing.Size(126, 22);
+            this.toolMixin.Text = "Mixin";
+            this.toolMixin.Click += new System.EventHandler(this.toolMixin_Click);
             // 
             // toolStatic
             // 
