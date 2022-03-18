@@ -68,4 +68,50 @@
     <Containers />
     <Relationships />
   </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.1, Culture=neutral, PublicKeyToken=null">
+    <Name>Methods</Name>
+    <Language>Dart</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Book</Name>
+        <Access>Public</Access>
+        <Location left="70" top="71" />
+        <Size width="584" height="404" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public int id</Member>
+        <Member type="Field">public String name</Member>
+        <Member type="Field">bool read</Member>
+        <Member type="Field">public const int hashCode = 200</Member>
+        <Member type="Method">public bool hasBeenRead()</Member>
+        <Member type="Method">public void printDetails()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Containers />
+    <Relationships />
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.1, Culture=neutral, PublicKeyToken=null">
+    <Name>Constructors</Name>
+    <Language>Dart</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Book</Name>
+        <Access>Public</Access>
+        <Location left="90" top="91" />
+        <Size width="584" height="404" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public int id</Member>
+        <Member type="Field">public String name</Member>
+        <Member type="Field">bool read</Member>
+        <Member type="Field">public const int hashCode = 200</Member>
+        <Member type="Method">public bool hasBeenRead()</Member>
+        <Member type="Method">public void printDetails()</Member>
+        <Member type="Constructor">public Book(String name)</Member>
+        <Member type="Constructor">public Book()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Containers />
+    <Relationships />
+  </ProjectItem>
 </Project>
