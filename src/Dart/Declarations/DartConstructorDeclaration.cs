@@ -8,8 +8,7 @@ namespace NClass.Dart
     {
         // [<access>] [static] <name>([<args>])
         const string ConstructorPattern =
-            @"^\s*" + DartLanguage.AccessPattern + @"(?<static>static\s+)?" +
-            @"^\s*" + DartLanguage.AccessPattern + @"(?<factory>factory\s+)?" +
+            @"^\s*" + DartLanguage.AccessPattern + @"(?<type>static|factory\s+)?" +
             @"(?<name>" + DartLanguage.NamePattern + ")" +
             @"\((?(static)|(?<args>.*))\)" + DartLanguage.DeclarationEnding;
 
