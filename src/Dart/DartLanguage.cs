@@ -465,6 +465,8 @@ namespace NClass.Dart
                 builder.Append(forCode ? "static " : "static, ");
             if ((modifier & OperationModifier.Abstract) != 0)
                 builder.Append(forCode ? "abstract " : "abstract, ");
+            if ((modifier & OperationModifier.Factory) != 0)
+                builder.Append(forCode ? "factory " : "factory, ");
 
             if (forCode)
                 builder.Remove(builder.Length - 1, 1);
