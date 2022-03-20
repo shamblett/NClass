@@ -921,6 +921,27 @@ namespace NClass.DiagramEditor.ClassDiagram.Dialogs
             }
         }
 
+        private void chkFactory_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!locked && member is Operation)
+            {
+                try
+                {
+                    ((Operation)member).IsFactory = chkFactory.Checked;
+                    RefreshValues();
+                    errorProvider.SetError(grpOperationModifiers, null);
+                    error = false;
+                    OnContentsChanged(EventArgs.Empty);
+                }
+                catch (BadSyntaxException ex)
+                {
+                    RefreshValues();
+                    errorProvider.SetError(grpOperationModifiers, ex.Message);
+                    error = true;
+                }
+            }
+        }
+
         private void grpFieldModifiers_Validated(object sender, EventArgs e)
         {
             errorProvider.SetError(grpFieldModifiers, null);
