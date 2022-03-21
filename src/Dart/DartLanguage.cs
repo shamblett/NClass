@@ -68,6 +68,9 @@ namespace NClass.Dart
         // Name
         internal const string NamePattern = InitialChar + @"\w*";
         
+        // Named constructor
+        internal const string NamedConstructorPattern = InitialChar + @"\w*[.]?\w*";
+
         // <T, K>
         private const string BaseGenericPattern =
             @"<\s*" + NamePattern + @"(\s*,\s*" + NamePattern + @")*\s*>";

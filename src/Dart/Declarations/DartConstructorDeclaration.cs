@@ -10,6 +10,7 @@ namespace NClass.Dart
         const string ConstructorPattern =
             @"^\s*" + DartLanguage.AccessPattern + @"(?<type>static|factory\s+)?" +
             @"(?<name>" + DartLanguage.NamePattern + ")" +
+            @"(?<namedconstructor>" + DartLanguage.NamedConstructorPattern + ")" +
             @"\((?(static)|(?<args>.*))\)" + DartLanguage.DeclarationEnding;
 
         static readonly Regex constructorRegex =
