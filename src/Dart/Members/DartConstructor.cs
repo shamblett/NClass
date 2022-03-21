@@ -153,6 +153,11 @@ namespace NClass.Dart
                 builder.Append("static ");
             }
 
+            if (IsFactory)
+            {
+                builder.Append("factory ");
+            }
+
             builder.AppendFormat("{0}(", Name);
 
             for (int i = 0; i < ArgumentList.Count; i++) {

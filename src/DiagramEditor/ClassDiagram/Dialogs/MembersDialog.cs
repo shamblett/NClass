@@ -382,6 +382,7 @@ namespace NClass.DiagramEditor.ClassDiagram.Dialogs
                 chkAbstract.Checked = operation.IsAbstract;
                 chkOverride.Checked = operation.IsOverride;
                 chkSealed.Checked = operation.IsSealed;
+                chkFactory.Checked = operation.IsFactory;
                 chkOperationHider.Checked = operation.IsHider;
                 txtInitialValue.Text = string.Empty;
             }

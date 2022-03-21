@@ -107,7 +107,7 @@
         <Member type="Method">public bool hasBeenRead()</Member>
         <Member type="Method">public void printDetails()</Member>
         <Member type="Constructor">public Book(String name)</Member>
-        <Member type="Constructor">public Book()</Member>
+        <Member type="Constructor">public factory Book()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
