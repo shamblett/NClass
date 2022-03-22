@@ -107,7 +107,16 @@
         <Member type="Method">public bool hasBeenRead()</Member>
         <Member type="Method">public void printDetails()</Member>
         <Member type="Constructor">public Book(String name)</Member>
-        <Member type="Constructor">public factory Book()</Member>
+        <Member type="Constructor">public Book()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Shoe</Name>
+        <Access>Public</Access>
+        <Location left="94" top="516" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Shoe()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>

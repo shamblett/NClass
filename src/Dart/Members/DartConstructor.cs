@@ -189,6 +189,7 @@ namespace NClass.Dart
                 AccessModifier = declaration.AccessModifier;
                 ArgumentList.InitFromDeclaration(declaration.ArgumentList);
                 IsStatic = declaration.IsStatic;
+                IsFactory = declaration.IsFactory;
             }
             finally {
                 RaiseChangedEvent = true;

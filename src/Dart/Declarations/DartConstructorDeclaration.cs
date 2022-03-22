@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using NClass.Core;
 using NClass.Translations;
 
@@ -36,7 +37,12 @@ namespace NClass.Dart
 
         public string Name
         {
-            get { return match.Groups["name"].Value; }
+           
+            get
+            {
+                var name = match.Groups["name"].Value;
+                var named = match.Groups["namedconstructor"].Value; 
+                return string.IsNullOrEmpty(named) ? name : name + named; }
         }
 
         public string Type
