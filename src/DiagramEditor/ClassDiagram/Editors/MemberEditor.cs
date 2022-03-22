@@ -109,7 +109,7 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
                 {
                     OperationModifier modifier = operation.Modifier &
                         (OperationModifier.Abstract | OperationModifier.Override |
-                        OperationModifier.Sealed | OperationModifier.Virtual);
+                        OperationModifier.Sealed | OperationModifier.Virtual | OperationModifier.Factory);
 
                     if (modifier == OperationModifier.None)
                         toolOperationModifiers.Text = Strings.None;
