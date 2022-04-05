@@ -120,6 +120,7 @@
         <Member type="Constructor">public Shoe.named()</Member>
         <Member type="Constructor">public Shoe()</Member>
         <Member type="Constructor">public Shoe.anotherName(String anotherName)</Member>
+        <Member type="Constructor">public Shoe.yetAnotherNamed()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
