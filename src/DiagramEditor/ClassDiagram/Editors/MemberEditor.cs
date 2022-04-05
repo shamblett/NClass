@@ -74,7 +74,15 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
                 Language language = shape.CompositeType.Language;
 
                 int cursorPosition = txtDeclaration.SelectionStart;
-                txtDeclaration.Text = member.ToString();
+                if (!language.IsOopLanguage)
+                {
+                    txtDeclaration.Text = member.ToString();
+                }
+                else
+                {
+                    txtDeclaration.Text = member.Name;
+                }
+
                 txtDeclaration.SelectionStart = cursorPosition;
                 txtDeclaration.ReadOnly = (member.MemberType == MemberType.Destructor);
 
