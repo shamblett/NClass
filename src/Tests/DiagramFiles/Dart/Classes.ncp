@@ -114,11 +114,12 @@
       <Entity type="Class">
         <Name>Shoe</Name>
         <Access>Public</Access>
-        <Location left="94" top="516" />
-        <Size width="162" height="216" />
+        <Location left="94" top="517" />
+        <Size width="374" height="247" />
         <Collapsed>False</Collapsed>
         <Member type="Constructor">public Shoe.named()</Member>
         <Member type="Constructor">public Shoe()</Member>
+        <Member type="Constructor">public Shoe.anotherName(String anotherName)</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
