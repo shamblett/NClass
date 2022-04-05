@@ -40,11 +40,11 @@ namespace NClass.Dart
         {
             get
             {
-                return GetNameWithoutGeneric(Parent.Name);
+                return GetNameWithoutGeneric(name != null ? name : Parent.Name);
             }
             set
             {
-                if (value != null && value != GetNameWithoutGeneric(Parent.Name))
+                if (value != null && value != GetNameWithoutGeneric(name != null ? name : Parent.Name))
                     throw new BadSyntaxException(Strings.ErrorConstructorName);
             }
         }
