@@ -164,6 +164,7 @@ namespace NClass.Dart
             validOperationModifiers.Add(OperationModifier.Static, "Static");
             validOperationModifiers.Add(OperationModifier.Abstract, "Abstract");
             validOperationModifiers.Add(OperationModifier.Override, "Override");
+            validOperationModifiers.Add(OperationModifier.Factory, "Factory");
         }
 
         private DartLanguage()
@@ -259,7 +260,8 @@ namespace NClass.Dart
             if ((modifier == OperationModifier.Abstract) ||
                 (modifier == OperationModifier.None) ||
                 (modifier == OperationModifier.Override) ||
-                (modifier == OperationModifier.Static))
+                (modifier == OperationModifier.Static) ||
+                (modifier == OperationModifier.Factory))
             {
                 return true;
             }
