@@ -242,6 +242,18 @@ namespace NClass.DiagramEditor.ClassDiagram.Dialogs
                 chkSealed.Enabled = false;
                 chkSealed.Text = "Sealed";
             }
+            // chkFactory
+            if (language.IsValidModifier(OperationModifier.Factory))
+            {
+                chkFactory.Enabled = true;
+                chkFactory.Text =
+                    language.ValidOperationModifiers[OperationModifier.Factory];
+            }
+            else
+            {
+                chkFactory.Enabled = false;
+                chkFactory.Text = "Factory";
+            }
             // chkOperationHider
             if (language.IsValidModifier(OperationModifier.Hider))
             {

@@ -252,7 +252,12 @@ namespace NClass.CSharp
 
         public override bool IsValidModifier(OperationModifier modifier)
         {
-            return true;
+            if (modifier != OperationModifier.Factory)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <exception cref="BadSyntaxException">
