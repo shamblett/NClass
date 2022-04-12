@@ -42,7 +42,7 @@
         <Location left="53" top="294" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
-        <Modifier>None</Modifier>
+        <Modifier>Mixin</Modifier>
       </Entity>
     </Entities>
     <Containers />

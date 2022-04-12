@@ -17,6 +17,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using NClass.Core;
 using NClass.Translations;
 
@@ -99,6 +100,22 @@ namespace NClass.Dart
         public override bool SupportsDestructors
         {
             get { return false; }
+        }
+
+        public override bool SupportsConstuctors
+        {
+            get
+            {
+                // No constructors for Mixins
+                if (Modifier == ClassModifier.Mixin)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         }
 
         /// <exception cref="ArgumentException">
