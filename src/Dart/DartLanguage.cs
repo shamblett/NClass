@@ -294,6 +294,7 @@ namespace NClass.Dart
                 else
                     parent.Modifier = ClassModifier.Abstract;
             }
+
         }
 
         private static void ValidateAccessModifiers(Operation operation)
