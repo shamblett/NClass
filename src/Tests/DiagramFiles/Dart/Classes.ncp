@@ -121,6 +121,8 @@
         <Member type="Constructor">public Shoe()</Member>
         <Member type="Constructor">public Shoe.anotherName(String anotherName)</Member>
         <Member type="Constructor">public Shoe.yetAnotherNamed()</Member>
+        <Member type="Property">public int Size { get; }</Member>
+        <Member type="Property">public int LaceHoles { get; set; }</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
