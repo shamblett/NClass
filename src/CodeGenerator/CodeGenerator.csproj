@@ -69,10 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DartProjectGenerator.cs" />
     <Compile Include="DartSourceFileGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GenerationResult.cs" />
     <Compile Include="ToolStripSimplifiedRenderer.cs" />
+    <Compile Include="DartSolutionGenerator.cs" />
     <Compile Include="VSSolutionGenerator.cs" />
     <Compile Include="SolutionType.cs" />
     <Compile Include="SolutionGenerator.cs" />
