@@ -20,6 +20,6 @@ namespace NClass.CodeGenerator
     {
         VisualStudio2017,
         VisualStudio2019,
-        None
+        Dart
     }
 }
