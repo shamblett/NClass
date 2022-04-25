@@ -15,7 +15,6 @@
 // 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 using System;
-using System.IO;
 using System.Collections.Specialized;
 using System.Windows.Forms;
 using NClass.Core;
@@ -101,6 +100,8 @@ namespace NClass.CodeGenerator
                 Settings.Default.CSharpImportList = importList;
             else if (object.Equals(cboLanguage.SelectedItem, "Java"))
                 Settings.Default.JavaImportList = importList;
+            else if (object.Equals(cboLanguage.SelectedItem, "Dart"))
+                Settings.Default.DartImportList = importList;
         }
 
         public void ShowDialog(Project project)
