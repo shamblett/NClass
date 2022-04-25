@@ -43,8 +43,7 @@ namespace NClass.CodeGenerator
             }
             set
             {
-                if (value == SolutionType.VisualStudio2019 ||
-                    value == SolutionType.VisualStudio2017)
+                if (value == SolutionType.Dart)
                 {
                     version = value;
                 }

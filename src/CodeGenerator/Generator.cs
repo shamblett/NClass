@@ -36,7 +36,13 @@ namespace NClass.CodeGenerator
 
         protected virtual SolutionGenerator CreateSolutionGenerator(Project project, SolutionType type)
         {
+            if (type == SolutionType.Dart)
+            {
+                return new DartSolutionGenerator(project, type);
+            }
+
             return new VSSolutionGenerator(project, type);
+
         }
 
         /// <exception cref="ArgumentException">
