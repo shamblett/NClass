@@ -268,7 +268,9 @@
             this.cboSolutionType.FormattingEnabled = true;
             this.cboSolutionType.Items.AddRange(new object[] {
             "Visual Studio 2017",
-            "Visual Studio 2019"});
+            "Visual Studio 2019",
+            "Dart"
+            });
             this.cboSolutionType.Location = new System.Drawing.Point(311, 83);
             this.cboSolutionType.Name = "cboSolutionType";
             this.cboSolutionType.Size = new System.Drawing.Size(271, 21);
