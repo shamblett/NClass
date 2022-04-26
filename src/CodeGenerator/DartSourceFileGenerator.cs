@@ -48,7 +48,7 @@ namespace NClass.CodeGenerator
         {
             StringCollection importList = Settings.Default.DartImportList;
             foreach (string usingElement in importList)
-                WriteLine("import " + usingElement + ";");
+                WriteLine(usingElement);
 
             if (importList.Count > 0)
                 AddBlankLine();
