@@ -18,7 +18,6 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using NClass.Core;
-using System.Text.RegularExpressions;
 using NClass.Core.Models;
 
 namespace NClass.CodeGenerator
@@ -39,7 +38,7 @@ namespace NClass.CodeGenerator
         {
             get
             {
-                string fileName = ProjectName + ".csproj";
+                string fileName =  "pubspec.yaml";
                 string directoryName = ProjectName;
 
                 return Path.Combine(directoryName, fileName);
@@ -56,53 +55,17 @@ namespace NClass.CodeGenerator
             try
             {
                 string templateDir = Path.Combine(Application.StartupPath, "Templates");
-                string templateFile = Path.Combine(templateDir, "csproj.template");
+                string templateFile = Path.Combine(templateDir, "pubspec.yaml.template");
                 string projectFile = Path.Combine(location, RelativeProjectFileName);
 
                 using (StreamReader reader = new StreamReader(templateFile))
-                using (StreamWriter writer = new StreamWriter(
-                    projectFile, false, reader.CurrentEncoding))
+                using (StreamWriter writer = new StreamWriter(projectFile, false, reader.CurrentEncoding))
                 {
                     while (!reader.EndOfStream)
                     {
                         string line = reader.ReadLine();
-
-                        line = line.Replace("${RootNamespace}", RootNamespace);
-                        line = line.Replace("${AssemblyName}", ProjectName);
-
-                        if (line.Contains("${VS2017:"))
-                        {
-                            if (solutionType == SolutionType.VisualStudio2017)
-                                line = Regex.Replace(line, @"\${VS2017:(?<content>.+?)}", "${content}");
-                            else
-                                line = Regex.Replace(line, @"\${VS2017:(?<content>.+?)}", "");
-
-                            if (line.Length == 0)
-                                continue;
-                        }
-                        if (line.Contains("${VS2019:"))
-                        {
-                            if (solutionType == SolutionType.VisualStudio2019)
-                                line = Regex.Replace(line, @"\${VS2019:(?<content>.+?)}", "${content}");
-                            else
-                                line = Regex.Replace(line, @"\${VS2019:(?<content>.+?)}", "");
-
-                            if (line.Length == 0)
-                                continue;
-                        }
-
-                        if (line.Contains("${SourceFile}"))
-                        {
-                            foreach (string fileName in FileNames)
-                            {
-                                string newLine = line.Replace("${SourceFile}", fileName);
-                                writer.WriteLine(newLine);
-                            }
-                        }
-                        else
-                        {
-                            writer.WriteLine(line);
-                        }
+                        line = line.Replace("${ProjectName}", ProjectName);
+                        writer.WriteLine(line);
                     }
                 }
 

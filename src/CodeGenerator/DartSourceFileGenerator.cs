@@ -33,65 +33,27 @@ namespace NClass.CodeGenerator
 
         protected override string Extension
         {
-            get { return ".cs"; }
+            get { return ".dart"; }
         }
 
         protected override void WriteFileContent()
         {
             WriteUsings();
 
-            var opened = OpenNamespace();
-
             WriteType(Type);
 
-            if(opened)
-                CloseNamespace();
         }
 
         private void WriteUsings()
         {
-            StringCollection importList = Settings.Default.CSharpImportList;
+            StringCollection importList = Settings.Default.DartImportList;
             foreach (string usingElement in importList)
-                WriteLine("using " + usingElement + ";");
+                WriteLine("import " + usingElement + ";");
 
             if (importList.Count > 0)
                 AddBlankLine();
         }
 
-        private string GetNamespaceDeclaration(TypeBase type)
-        {
-            var namespaceDeclaration = Settings.Default.UseRootNamespace ? RootNamespace : string.Empty;
-
-            if (type.NestingParent is Package parentPackage)
-                if (Settings.Default.UseRootNamespace)
-                    namespaceDeclaration += "." + parentPackage.FullName;
-                else
-                    namespaceDeclaration = parentPackage.FullName;
-
-            namespaceDeclaration = namespaceDeclaration.Replace(" ", "");
-            return namespaceDeclaration;
-        }
-
-        private bool OpenNamespace()
-        {
-            var namespaceDeclaration = GetNamespaceDeclaration(Type);
-
-            //Technicaly it's possible to define type without namespace in C#
-            if (string.IsNullOrWhiteSpace(namespaceDeclaration))
-                return false;
-
-            WriteLine("namespace " + namespaceDeclaration);
-            WriteLine("{");
-            IndentLevel++;
-
-            return true;
-        }
-
-        private void CloseNamespace()
-        {
-            IndentLevel--;
-            WriteLine("}");
-        }
 
         private void WriteType(TypeBase type)
         {
