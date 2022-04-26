@@ -146,6 +146,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Templates\pubspec.yaml.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\sln.template">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
