@@ -61,13 +61,19 @@ namespace NClass.CodeGenerator
                 WriteCompositeType((CompositeType) type);
             else if (type is EnumType)
                 WriteEnum((EnumType) type);
-            else if (type is DelegateType)
-                WriteDelegate((DelegateType) type);
+            
+        }
+
+        private string ConditionDeclaration(string declaration)
+        {
+            // TOD SJH fill this in.
+            return "";
         }
 
         private void WriteCompositeType(CompositeType type)
         {
             // Writing type declaration
+            var declaration = ConditionDeclaration(type.GetDeclaration());
             WriteLine(type.GetDeclaration());
             WriteLine("{");
             IndentLevel++;
