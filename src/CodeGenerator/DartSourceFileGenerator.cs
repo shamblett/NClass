@@ -66,15 +66,29 @@ namespace NClass.CodeGenerator
 
         private string ConditionDeclaration(string declaration)
         {
-            // TOD SJH fill this in.
-            return "";
+            // TODO SJH fill this in.
+            var outString = declaration;
+            
+            // Public/Private
+            if (outString.StartsWith("public "))
+            {
+                outString = outString.Replace("public ", "");
+            }
+
+            if (outString.StartsWith("private "))
+            {
+                outString = outString.Replace("private ", "");
+                outString = outString.Replace("class ", "class _");
+            }
+
+            return outString;
         }
 
         private void WriteCompositeType(CompositeType type)
         {
             // Writing type declaration
             var declaration = ConditionDeclaration(type.GetDeclaration());
-            WriteLine(type.GetDeclaration());
+            WriteLine(declaration);
             WriteLine("{");
             IndentLevel++;
 
