@@ -66,7 +66,6 @@ namespace NClass.CodeGenerator
 
         private string ConditionDeclaration(string declaration)
         {
-            // TODO SJH fill this in.
             var outString = declaration;
             
             // Public/Private
