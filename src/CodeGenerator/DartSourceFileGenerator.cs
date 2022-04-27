@@ -70,6 +70,7 @@ namespace NClass.CodeGenerator
             var outString = declaration;
             
             // Public/Private
+            var isPrivate = false;
             if (outString.StartsWith("public "))
             {
                 outString = outString.Replace("public ", "");
@@ -78,9 +79,25 @@ namespace NClass.CodeGenerator
             if (outString.StartsWith("private "))
             {
                 outString = outString.Replace("private ", "");
-                outString = outString.Replace("class ", "class _");
+                isPrivate = true;
             }
 
+            // Classes
+            if (outString.Contains("class"))
+            {
+                if (isPrivate)
+                {
+                    outString = outString.Replace("class ", "class _");
+                }
+                // Mixin
+                if (outString.Contains("mixin"))
+                {
+                   
+                    outString = outString.Replace("mixin class", "mixin");
+                    
+                }
+            }
+            
             return outString;
         }
 
