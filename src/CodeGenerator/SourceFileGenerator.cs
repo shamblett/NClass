@@ -19,6 +19,7 @@ using System.IO;
 using System.Text;
 using NClass.Core;
 using System.Text.RegularExpressions;
+using NClass.Dart;
 
 namespace NClass.CodeGenerator
 {
@@ -83,6 +84,12 @@ namespace NClass.CodeGenerator
                     Directory.CreateDirectory(directory);
 
                 string fileName = Type.Name + Extension;
+                // Lowecase filenames for Dart
+                if (Type.Language == DartLanguage.Instance)
+                {
+                    fileName = Type.Name.ToLower() + Extension;
+                }
+
                 fileName = Regex.Replace(fileName, @"\<(?<type>.+)\>", @"[${type}]");
                 string path = Path.Combine(directory, fileName);
 

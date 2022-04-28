@@ -39,9 +39,7 @@ namespace NClass.CodeGenerator
         protected override void WriteFileContent()
         {
             WriteUsings();
-
             WriteType(Type);
-
         }
 
         private void WriteUsings()
