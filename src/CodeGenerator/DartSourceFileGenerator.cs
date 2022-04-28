@@ -64,6 +64,33 @@ namespace NClass.CodeGenerator
             
         }
 
+        private string ConditionClassDeclaration(string declaration, bool isPrivate)
+        {
+            var outString = declaration;
+            if (isPrivate)
+            {
+                outString = outString.Replace("class ", "class _");
+            }
+
+            // Mixin
+            if (outString.Contains("mixin"))
+            {
+
+                outString = outString.Replace("mixin class", "mixin");
+
+            }
+
+            // Static
+            if (outString.Contains("static"))
+            {
+
+                outString = outString.Replace("static", "/* static */");
+
+            }
+
+            return outString;
+        }
+
         private string ConditionDeclaration(string declaration)
         {
             var outString = declaration;
@@ -84,17 +111,7 @@ namespace NClass.CodeGenerator
             // Classes
             if (outString.Contains("class"))
             {
-                if (isPrivate)
-                {
-                    outString = outString.Replace("class ", "class _");
-                }
-                // Mixin
-                if (outString.Contains("mixin"))
-                {
-                   
-                    outString = outString.Replace("mixin class", "mixin");
-                    
-                }
+                return ConditionClassDeclaration(outString, isPrivate);
             }
             
             return outString;
