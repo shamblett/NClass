@@ -1,0 +1,26 @@
+<Project>
+  <Name>Generation</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
+    <Name>Simple</Name>
+    <Language>Dart</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Shoe</Name>
+        <Access>Public</Access>
+        <Location left="46" top="41" />
+        <Size width="622" height="461" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int privateField</Member>
+        <Member type="Constructor">public Shoe()</Member>
+        <Member type="Constructor">public factory ShoeFactory()</Member>
+        <Member type="Constructor">public Shoe.withSize(int size)</Member>
+        <Member type="Property">public int Size { get; }</Member>
+        <Member type="Method">public bool willFit(int footSize)</Member>
+        <Member type="Property">public int laceLength { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Containers />
+    <Relationships />
+  </ProjectItem>
+</Project>

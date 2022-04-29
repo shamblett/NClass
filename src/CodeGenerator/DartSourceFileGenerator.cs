@@ -182,7 +182,7 @@ namespace NClass.CodeGenerator
 
         private void WriteField(Field field)
         {
-            WriteLine(field.GetDeclaration());
+            WriteLine(ConditionDeclaration(field.GetDeclaration()));
         }
 
         private void WriteOperation(Operation operation)

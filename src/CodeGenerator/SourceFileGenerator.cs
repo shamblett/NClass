@@ -84,7 +84,8 @@ namespace NClass.CodeGenerator
                     Directory.CreateDirectory(directory);
 
                 string fileName = Type.Name + Extension;
-                // Lowecase filenames for Dart
+
+                // Lowercase file names for Dart
                 if (Type.Language == DartLanguage.Instance)
                 {
                     fileName = Type.Name.ToLower() + Extension;
