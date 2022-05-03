@@ -125,6 +125,7 @@ namespace NClass.CodeGenerator
         {
             // Pre condition the declaration
             var conditioned = ConditionDeclaration(type.GetDeclaration());
+           
 
             if (type is ClassType)
             {
