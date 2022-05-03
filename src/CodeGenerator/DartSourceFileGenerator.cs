@@ -31,6 +31,18 @@ namespace NClass.CodeGenerator
         {
         }
 
+        private struct Condition
+        {
+           public Condition(String declaration, bool isPrivate)
+            {
+                this.declaration = declaration;
+                this.isPrivate = isPrivate;
+            }
+            public readonly string declaration;
+            public readonly bool isPrivate;
+        };
+
+
         protected override string Extension
         {
             get { return ".dart"; }
@@ -62,10 +74,10 @@ namespace NClass.CodeGenerator
             
         }
 
-        private string ConditionClassDeclaration(string declaration, bool isPrivate)
+        private Condition ConditionClassDeclaration(Condition condition)
         {
-            var outString = declaration;
-            if (isPrivate)
+            var outString = condition.declaration;
+            if (condition.isPrivate)
             {
                 outString = outString.Replace("class ", "class _");
             }
@@ -86,10 +98,10 @@ namespace NClass.CodeGenerator
 
             }
 
-            return outString;
+            return new Condition(outString, condition.isPrivate);
         }
 
-        private string ConditionDeclaration(string declaration)
+        private Condition ConditionDeclaration(string declaration)
         {
             var outString = declaration;
             
@@ -106,25 +118,21 @@ namespace NClass.CodeGenerator
                 isPrivate = true;
             }
 
-            // Classes
-            if (outString.Contains("class"))
-            {
-                return ConditionClassDeclaration(outString, isPrivate);
-            }
-            
-            return outString;
+            return new Condition(outString, isPrivate);
         }
 
         private void WriteCompositeType(CompositeType type)
         {
-            // Writing type declaration
-            var declaration = ConditionDeclaration(type.GetDeclaration());
-            WriteLine(declaration);
-            WriteLine("{");
-            IndentLevel++;
+            // Pre condition the declaration
+            var conditioned = ConditionDeclaration(type.GetDeclaration());
 
             if (type is ClassType)
             {
+                var condition = ConditionClassDeclaration(conditioned);
+                WriteLine(condition.declaration);
+                WriteLine("{");
+                IndentLevel++;
+
                 foreach (TypeBase nestedType in ((ClassType) type).NestedChilds)
                 {
                     WriteType(nestedType);
@@ -182,7 +190,7 @@ namespace NClass.CodeGenerator
 
         private void WriteField(Field field)
         {
-            WriteLine(ConditionDeclaration(field.GetDeclaration()));
+           //TODO  SJH WriteLine(ConditionDeclaration(field.GetDeclaration()));
         }
 
         private void WriteOperation(Operation operation)
