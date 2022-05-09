@@ -7,12 +7,13 @@
       <Entity type="Class">
         <Name>Shoe</Name>
         <Access>Public</Access>
-        <Location left="46" top="41" />
+        <Location left="48" top="44" />
         <Size width="622" height="461" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private int privateField</Member>
+        <Member type="Field">public int publicField</Member>
         <Member type="Constructor">public Shoe()</Member>
-        <Member type="Constructor">public factory ShoeFactory()</Member>
+        <Member type="Constructor">public ShoeFactory()</Member>
         <Member type="Constructor">public Shoe.withSize(int size)</Member>
         <Member type="Property">public int Size { get; }</Member>
         <Member type="Method">public bool willFit(int footSize)</Member>

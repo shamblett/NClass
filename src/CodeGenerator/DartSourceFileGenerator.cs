@@ -101,6 +101,20 @@ namespace NClass.CodeGenerator
             return new Condition(outString, condition.isPrivate);
         }
 
+        private Condition ConditionFieldDeclaration(Condition condition)
+        {
+            var outString = condition.declaration;
+            if (condition.isPrivate)
+            {
+                string lastWord = outString.Substring(outString.LastIndexOf(' ') + 1);
+                outString = outString.Replace(lastWord, "");
+                lastWord = "_" + lastWord;
+                outString += lastWord;
+            }
+
+            return new Condition(outString, condition.isPrivate);
+        }
+
         private Condition ConditionDeclaration(string declaration)
         {
             var outString = declaration;
@@ -191,7 +205,8 @@ namespace NClass.CodeGenerator
 
         private void WriteField(Field field)
         {
-           //TODO  SJH WriteLine(ConditionDeclaration(field.GetDeclaration()));
+            var condition = ConditionDeclaration(field.GetDeclaration());
+            WriteLine(ConditionFieldDeclaration(condition).declaration);
         }
 
         private void WriteOperation(Operation operation)
