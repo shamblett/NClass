@@ -115,6 +115,20 @@ namespace NClass.CodeGenerator
             return new Condition(outString, condition.isPrivate);
         }
 
+        private Condition ConditionOperationDeclaration(Condition condition)
+        {
+            var outString = condition.declaration;
+            if (condition.isPrivate)
+            {
+                string operationName = outString.Substring(outString.IndexOf(' ') + 1);
+                outString = outString.Replace(operationName, "");
+                operationName = "_" + operationName;
+                outString += operationName;
+            }
+
+            return new Condition(outString, condition.isPrivate);
+        }
+
         private Condition ConditionDeclaration(string declaration)
         {
             var outString = declaration;
@@ -134,6 +148,7 @@ namespace NClass.CodeGenerator
 
             return new Condition(outString, isPrivate);
         }
+
 
         private void WriteCompositeType(CompositeType type)
         {
@@ -198,10 +213,6 @@ namespace NClass.CodeGenerator
             WriteLine("}");
         }
 
-        private void WriteDelegate(DelegateType _delegate)
-        {
-            WriteLine(_delegate.GetDeclaration());
-        }
 
         private void WriteField(Field field)
         {
@@ -211,31 +222,20 @@ namespace NClass.CodeGenerator
 
         private void WriteOperation(Operation operation)
         {
-            WriteLine(operation.GetDeclaration());
-
+            
             if (operation is Property)
             {
                 WriteProperty((Property) operation);
             }
             else if (operation.HasBody)
             {
-                if (operation is Event)
-                {
-                    WriteLine("{");
-                    IndentLevel++;
-                    WriteLine("add {  }");
-                    WriteLine("remove {  }");
-                    IndentLevel--;
-                    WriteLine("}");
-                }
-                else
-                {
-                    WriteLine("{");
-                    IndentLevel++;
-                    WriteNotImplementedString();
-                    IndentLevel--;
-                    WriteLine("}");
-                }
+                var condition = ConditionDeclaration(operation.GetDeclaration());
+                WriteLine(ConditionOperationDeclaration(condition).declaration);
+                WriteLine("{");
+                IndentLevel++;
+                WriteNotImplementedString();
+                IndentLevel--;
+                WriteLine("}");
             }
         }
 

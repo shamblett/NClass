@@ -18,6 +18,7 @@
         <Member type="Property">public int Size { get; }</Member>
         <Member type="Method">public bool willFit(int footSize)</Member>
         <Member type="Property">public int laceLength { get; set; }</Member>
+        <Member type="Method">private void privateMethod()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
