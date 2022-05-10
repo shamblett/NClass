@@ -285,10 +285,7 @@ namespace NClass.CodeGenerator
         {
             if (Settings.Default.UseNotImplementedExceptions)
             {
-                if (Settings.Default.CSharpImportList.Contains("System"))
-                    WriteLine("throw new NotImplementedException();");
-                else
-                    WriteLine("throw new System.NotImplementedException();");
+                WriteLine("throw new UnimplementedError();");
             }
             else
             {
