@@ -132,7 +132,11 @@ namespace NClass.CodeGenerator
         private Condition ConditionDeclaration(string declaration)
         {
             var outString = declaration;
-            
+
+            // Collapse multiple spaces into a single space
+            outString = string.Join(" ", outString.Split(new char[] { ' ' }, 
+                StringSplitOptions.RemoveEmptyEntries));
+
             // Public/Private
             var isPrivate = false;
             if (outString.StartsWith("public "))
