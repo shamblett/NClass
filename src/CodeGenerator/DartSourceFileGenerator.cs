@@ -245,44 +245,28 @@ namespace NClass.CodeGenerator
 
         private void WriteProperty(Property property)
         {
-            WriteLine("{");
-            IndentLevel++;
+            var condition = ConditionDeclaration(property.GetDeclaration());
+            
+            // Split the declaration to extract the type and name
+            var parts = condition.declaration.Split(' ');
+            var  type = parts[0];
+            var name = parts[1].ToLower();
+            var privateName = "_" + name;
+            var propertyName = char.ToUpper(name[0]) + name.Substring(1);
 
+            // Output the field
+            WriteLine(type + " " + privateName + ";");
+            
             if (!property.IsWriteonly)
             {
-                if (property.HasImplementation)
-                {
-                    WriteLine("get");
-                    WriteLine("{");
-                    IndentLevel++;
-                    WriteNotImplementedString();
-                    IndentLevel--;
-                    WriteLine("}");
-                }
-                else
-                {
-                    WriteLine("get;");
-                }
+                WriteLine(type + " get " + propertyName + " => " + privateName + ";");
+               
             }
             if (!property.IsReadonly)
             {
-                if (property.HasImplementation)
-                {
-                    WriteLine("set");
-                    WriteLine("{");
-                    IndentLevel++;
-                    WriteNotImplementedString();
-                    IndentLevel--;
-                    WriteLine("}");
-                }
-                else
-                {
-                    WriteLine("set;");
-                }
+                WriteLine("set  " + propertyName + "(" + type + " value) => " + privateName + " = value;");
             }
 
-            IndentLevel--;
-            WriteLine("}");
         }
 
         private void WriteNotImplementedString()
