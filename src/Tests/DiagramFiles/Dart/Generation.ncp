@@ -43,4 +43,21 @@
     <Containers />
     <Relationships />
   </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
+    <Name>Interface</Name>
+    <Language>Dart</Language>
+    <Entities>
+      <Entity type="Interface">
+        <Name>Interface</Name>
+        <Access>Public</Access>
+        <Location left="30" top="23" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">int add(int a, int b)</Member>
+        <Member type="Method">void writeLine()</Member>
+      </Entity>
+    </Entities>
+    <Containers />
+    <Relationships />
+  </ProjectItem>
 </Project>

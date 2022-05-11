@@ -321,6 +321,7 @@ namespace NClass.Core
             {
                 return (!IsAbstract && !(Parent is InterfaceType));
             }
+
         }
 
         public virtual bool Overridable

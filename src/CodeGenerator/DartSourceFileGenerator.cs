@@ -101,6 +101,20 @@ namespace NClass.CodeGenerator
             return new Condition(outString, condition.isPrivate);
         }
 
+        private Condition ConditionInterfaceDeclaration(Condition condition)
+        {
+            var outString = condition.declaration;
+
+            if (condition.isPrivate)
+            {
+                outString = outString.Replace("interface ", "interface _");
+            }
+
+            outString = outString.Replace("interface", "abstract class");
+
+            return new Condition(outString, condition.isPrivate);
+        }
+
         private Condition ConditionFieldDeclaration(Condition condition)
         {
             var outString = condition.declaration;
@@ -156,6 +170,8 @@ namespace NClass.CodeGenerator
 
         private void WriteCompositeType(CompositeType type)
         {
+            var isInterface = false;
+
             // Pre condition the declaration
             var conditioned = ConditionDeclaration(type.GetDeclaration());
            
@@ -174,6 +190,15 @@ namespace NClass.CodeGenerator
                 }
             }
 
+            if (type is InterfaceType)
+            {
+                var condition = ConditionInterfaceDeclaration(conditioned);
+                WriteLine(condition.declaration);
+                WriteLine("{");
+                IndentLevel++;
+                isInterface = true;
+            }
+
             if (type.SupportsFields)
             {
                 foreach (Field field in type.Fields)
@@ -188,7 +213,7 @@ namespace NClass.CodeGenerator
                     AddBlankLine();
                 needBlankLine = true;
 
-                WriteOperation(operation);
+                WriteOperation(operation, isInterface);
             }
 
             // Writing closing bracket of the type block
@@ -224,9 +249,8 @@ namespace NClass.CodeGenerator
             WriteLine(ConditionFieldDeclaration(condition).declaration);
         }
 
-        private void WriteOperation(Operation operation)
+        private void WriteOperation(Operation operation, bool isInterface)
         {
-            
             if (operation is Property)
             {
                 WriteProperty((Property) operation);
@@ -240,6 +264,11 @@ namespace NClass.CodeGenerator
                 WriteNotImplementedString();
                 IndentLevel--;
                 WriteLine("}");
+            }
+            else if (isInterface)
+            {
+                var condition = ConditionDeclaration(operation.GetDeclaration());
+                WriteLine(condition.declaration);
             }
         }
 
