@@ -249,7 +249,7 @@ namespace NClass.CodeGenerator
             
             // Split the declaration to extract the type and name
             var parts = condition.declaration.Split(' ');
-            var  type = parts[0];
+            var type = parts[0];
             var name = parts[1].ToLower();
             var privateName = "_" + name;
             var propertyName = char.ToUpper(name[0]) + name.Substring(1);
