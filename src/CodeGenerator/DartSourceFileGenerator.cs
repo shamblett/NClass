@@ -198,8 +198,8 @@ namespace NClass.CodeGenerator
 
         private void WriteEnum(EnumType _enum)
         {
-            // Writing type declaration
-            WriteLine(_enum.GetDeclaration());
+            var condition = ConditionDeclaration(_enum.GetDeclaration());
+            WriteLine(condition.declaration);
             WriteLine("{");
             IndentLevel++;
 
