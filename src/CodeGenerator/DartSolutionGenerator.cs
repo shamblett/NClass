@@ -50,16 +50,13 @@ namespace NClass.CodeGenerator
             }
         }
 
-        private string VersionNumber => "12.00";
+        private string VersionNumber => "2.17.0";
 
         private string VersionString
         {
             get
             {
-                if (Version == SolutionType.VisualStudio2017)
-                    return "Visual Studio 15";
-                else
-                    return "Visual Studio 16";
+                return "2.17.0";
             }
         }
 
@@ -76,56 +73,11 @@ namespace NClass.CodeGenerator
             throw new ArgumentException("The model is not a Dart language model.");
         }
 
+        // No solution file for Dart
         protected override bool GenerateSolutionFile(string location)
         {
-            try
-            {
-                string templateDir = Path.Combine(Application.StartupPath, "Templates");
-                string templatePath = Path.Combine(templateDir, "sln.template");
-                string solutionDir = Path.Combine(location, SolutionName);
-                string solutionPath = Path.Combine(solutionDir, SolutionName + ".sln");
-
-                using (StreamReader reader = new StreamReader(templatePath))
-                using (StreamWriter writer = new StreamWriter(
-                    solutionPath, false, reader.CurrentEncoding))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        CopyLine(reader, writer);
-                    }
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
 
-        private void CopyLine(StreamReader reader, StreamWriter writer)
-        {
-            string line = reader.ReadLine();
-
-            line = line.Replace("${VersionNumber}", VersionNumber);
-            line = line.Replace("${VersionString}", VersionString);
-
-            if (line.Contains("${ProjectFile}"))
-            {
-                string nextLine = reader.ReadLine();
-                foreach (ProjectGenerator generator in ProjectGenerators)
-                {
-                    string newLine = line.Replace("${ProjectFile}",
-                        generator.RelativeProjectFileName);
-                    newLine = newLine.Replace("${ProjectName}", generator.ProjectName);
-                    
-                    writer.WriteLine(newLine);
-                    writer.WriteLine(nextLine);
-                }
-            }
-            else
-            {
-                writer.WriteLine(line);
-            }
-        }
     }
 }

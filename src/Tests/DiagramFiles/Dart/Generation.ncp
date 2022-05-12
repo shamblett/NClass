@@ -60,4 +60,17 @@
     <Containers />
     <Relationships />
   </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
+    <Name>Package</Name>
+    <Language>Dart</Language>
+    <Entities>
+      <Entity type="Package">
+        <Name>DartPackage</Name>
+        <Location left="72" top="21" />
+        <Size width="320" height="350" />
+      </Entity>
+    </Entities>
+    <Containers />
+    <Relationships />
+  </ProjectItem>
 </Project>
