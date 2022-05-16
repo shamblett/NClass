@@ -69,7 +69,7 @@ namespace NClass.Dart
 
         public override bool SupportsEvents
         {
-            get { return true; }
+            get { return false; }
         }
 
         /// <exception cref="ArgumentException">

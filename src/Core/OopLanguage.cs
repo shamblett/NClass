@@ -32,7 +32,7 @@ namespace NClass.Core
 
         public sealed override bool SupportsStructures
         {
-            get { return true; }
+            get { return false; }
         }
 
         public sealed override bool SupportsEnums
@@ -52,7 +52,7 @@ namespace NClass.Core
 
         public override bool ExplicitVirtualMethods
         {
-            get { return true; }
+            get { return false; }
         }
 
         public override bool IsOopLanguage

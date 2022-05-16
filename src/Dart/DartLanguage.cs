@@ -504,7 +504,7 @@ namespace NClass.Dart
 
         protected override StructureType CreateStructure()
         {
-            return new DartStructure();
+            return null;
         }
 
         protected override InterfaceType CreateInterface()
@@ -519,7 +519,7 @@ namespace NClass.Dart
 
         protected override DelegateType CreateDelegate()
         {
-            return new DartDelegate();
+            return null;
         }
 
         protected override ArgumentList CreateParameterCollection()
