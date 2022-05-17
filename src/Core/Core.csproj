@@ -77,7 +77,6 @@
     <Compile Include="Declarations\IMemberDeclaration.cs" />
     <Compile Include="Declarations\IParameterDeclaration.cs" />
     <Compile Include="Declarations\IPropertyDeclaration.cs" />
-    <Compile Include="OopLanguage.cs" />
     <Compile Include="Entities\Actor.cs" />
     <Compile Include="Entities\EntityType.cs" />
     <Compile Include="Entities\INestable.cs" />

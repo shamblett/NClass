@@ -24,7 +24,7 @@ using NClass.Translations;
 
 namespace NClass.Dart
 {
-    public sealed class DartLanguage : OopLanguage
+    public sealed class DartLanguage : Language
     {
         static DartLanguage instance = new DartLanguage();
 
@@ -525,6 +525,46 @@ namespace NClass.Dart
         protected override ArgumentList CreateParameterCollection()
         {
             return new DartArgumentList();
+        }
+
+        public override bool SupportsAssemblyImport
+        {
+            get { return false; }
+        }
+
+        public sealed override bool SupportsInterfaces
+        {
+            get { return true; }
+        }
+
+        public sealed override bool SupportsStructures
+        {
+            get { return false; }
+        }
+
+        public sealed override bool SupportsEnums
+        {
+            get { return true; }
+        }
+
+        public sealed override bool SupportsDelegates
+        {
+            get { return false; }
+        }
+
+        public override bool SupportsExplicitImplementation
+        {
+            get { return true; }
+        }
+
+        public override bool ExplicitVirtualMethods
+        {
+            get { return false; }
+        }
+
+        public override bool IsOopLanguage
+        {
+            get { return true; }
         }
     }
 }
