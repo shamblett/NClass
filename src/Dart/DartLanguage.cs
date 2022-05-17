@@ -473,6 +473,8 @@ namespace NClass.Dart
                 builder.Append(forCode ? "abstract " : "abstract, ");
             if ((modifier & OperationModifier.Factory) != 0)
                 builder.Append(forCode ? "factory " : "factory, ");
+            if ((modifier & OperationModifier.Override) != 0)
+                builder.Append(forCode ? "override " : "override, ");
 
             if (forCode)
                 builder.Remove(builder.Length - 1, 1);
