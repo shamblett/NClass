@@ -1,6 +1,6 @@
 <Project>
   <Name>Classes</Name>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.1, Culture=neutral, PublicKeyToken=null">
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
     <Name>Access</Name>
     <Language>Dart</Language>
     <Entities>
@@ -48,7 +48,7 @@
     <Containers />
     <Relationships />
   </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.1, Culture=neutral, PublicKeyToken=null">
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
     <Name>Fields</Name>
     <Language>Dart</Language>
     <Entities>
@@ -68,7 +68,7 @@
     <Containers />
     <Relationships />
   </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.1, Culture=neutral, PublicKeyToken=null">
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
     <Name>Methods</Name>
     <Language>Dart</Language>
     <Entities>
@@ -86,11 +86,20 @@
         <Member type="Method">public void printDetails()</Member>
         <Modifier>None</Modifier>
       </Entity>
+      <Entity type="Class">
+        <Name>Animal</Name>
+        <Access>Public</Access>
+        <Location left="786" top="71" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public abstract bool hasWings()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
     </Entities>
     <Containers />
     <Relationships />
   </ProjectItem>
-  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.1, Culture=neutral, PublicKeyToken=null">
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.ClassDiagram" assembly="NClass.DiagramEditor, Version=2.8.0.2, Culture=neutral, PublicKeyToken=null">
     <Name>Constructors</Name>
     <Language>Dart</Language>
     <Entities>

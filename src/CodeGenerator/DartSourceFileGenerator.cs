@@ -100,6 +100,12 @@ namespace NClass.CodeGenerator
 
             }
 
+            // Extends
+            if ( outString.Contains(":"))
+            {
+                outString = outString.Replace(":", "extends");
+            }
+
             return new Condition(outString, condition.isPrivate, condition.isOverride);
         }
 
@@ -142,6 +148,10 @@ namespace NClass.CodeGenerator
                 outString += operationName;
             }
 
+            if (outString.StartsWith("abstract"))
+            {
+                outString = outString.Replace("abstract","");
+            }
             return new Condition(outString, condition.isPrivate, condition.isOverride);
         }
 
@@ -216,11 +226,15 @@ namespace NClass.CodeGenerator
 
             foreach (Operation operation in type.Operations)
             {
+                var isAbstract = false;
                 if (needBlankLine)
                     AddBlankLine();
                 needBlankLine = true;
-
-                WriteOperation(operation, isInterface);
+                if (operation.IsAbstract)
+                {
+                   isAbstract = true;
+                }
+                WriteOperation(operation, isInterface, isAbstract);
             }
 
             // Writing closing bracket of the type block
@@ -260,7 +274,7 @@ namespace NClass.CodeGenerator
             WriteLine(ConditionFieldDeclaration(condition).declaration);
         }
 
-        private void WriteOperation(Operation operation, bool isInterface)
+        private void WriteOperation(Operation operation, bool isInterface, bool isAbstract)
         {
             if (operation is Property)
             {
@@ -284,6 +298,15 @@ namespace NClass.CodeGenerator
             {
                 var condition = ConditionDeclaration(operation.GetDeclaration());
                 WriteLine(condition.declaration);
+            } else if (isAbstract)
+            {
+                var condition = ConditionDeclaration(operation.GetDeclaration());
+                if (condition.isOverride)
+                {
+                    WriteLine("@override");
+                }
+                WriteLine(ConditionOperationDeclaration(condition).declaration);
+
             }
         }
 
