@@ -90,7 +90,7 @@ namespace NClass.Dart
 
         // [static | abstract | get | set]
         internal const string OperationModifiersPattern =
-            @"((?<modifier>static|abstract)\s+)*";
+            @"((?<modifier>static|abstract|override)\s+)*";
 
         // [ private]
         internal const string AccessPattern =@"((?<access>private|public)\s+)*";

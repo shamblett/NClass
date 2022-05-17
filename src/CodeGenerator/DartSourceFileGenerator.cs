@@ -33,13 +33,15 @@ namespace NClass.CodeGenerator
 
         private struct Condition
         {
-           public Condition(String declaration, bool isPrivate)
+           public Condition(String declaration, bool isPrivate, bool isOverride)
             {
                 this.declaration = declaration;
                 this.isPrivate = isPrivate;
+                this.isOverride = isOverride;
             }
             public readonly string declaration;
             public readonly bool isPrivate;
+            public readonly bool isOverride;
         };
 
 
@@ -98,7 +100,7 @@ namespace NClass.CodeGenerator
 
             }
 
-            return new Condition(outString, condition.isPrivate);
+            return new Condition(outString, condition.isPrivate, condition.isOverride);
         }
 
         private Condition ConditionInterfaceDeclaration(Condition condition)
@@ -112,7 +114,7 @@ namespace NClass.CodeGenerator
 
             outString = outString.Replace("interface", "abstract class");
 
-            return new Condition(outString, condition.isPrivate);
+            return new Condition(outString, condition.isPrivate, condition.isOverride);
         }
 
         private Condition ConditionFieldDeclaration(Condition condition)
@@ -125,8 +127,8 @@ namespace NClass.CodeGenerator
                 lastWord = "_" + lastWord;
                 outString += lastWord;
             }
-
-            return new Condition(outString, condition.isPrivate);
+           
+            return new Condition(outString, condition.isPrivate, condition.isOverride);
         }
 
         private Condition ConditionOperationDeclaration(Condition condition)
@@ -140,7 +142,7 @@ namespace NClass.CodeGenerator
                 outString += operationName;
             }
 
-            return new Condition(outString, condition.isPrivate);
+            return new Condition(outString, condition.isPrivate, condition.isOverride);
         }
 
         private Condition ConditionDeclaration(string declaration)
@@ -153,6 +155,7 @@ namespace NClass.CodeGenerator
 
             // Public/Private
             var isPrivate = false;
+            var isOverride = false;
             if (outString.StartsWith("public "))
             {
                 outString = outString.Replace("public ", "");
@@ -163,8 +166,12 @@ namespace NClass.CodeGenerator
                 outString = outString.Replace("private ", "");
                 isPrivate = true;
             }
-
-            return new Condition(outString, isPrivate);
+            if ( outString.Contains("override"))
+            {
+                outString = outString.Replace("override ", "");
+                isOverride = true;
+            }
+            return new Condition(outString, isPrivate, isOverride);
         }
 
 
@@ -246,6 +253,10 @@ namespace NClass.CodeGenerator
         private void WriteField(Field field)
         {
             var condition = ConditionDeclaration(field.GetDeclaration());
+            if (condition.isOverride)
+            {
+                WriteLine("@override");
+            }
             WriteLine(ConditionFieldDeclaration(condition).declaration);
         }
 
@@ -258,6 +269,10 @@ namespace NClass.CodeGenerator
             else if (operation.HasBody)
             {
                 var condition = ConditionDeclaration(operation.GetDeclaration());
+                if ( condition.isOverride)
+                {
+                    WriteLine("@override");
+                }
                 WriteLine(ConditionOperationDeclaration(condition).declaration);
                 WriteLine("{");
                 IndentLevel++;
