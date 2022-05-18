@@ -144,16 +144,36 @@ namespace NClass.DiagramEditor.ClassDiagram
                     var command = new AddConnectionCommand(diagram, _connectionFactory);
                     command.Execute();
                     diagram.TrackCommand(command);
+                    return;
                 }
                 catch (RelationshipException)
                 {
                     MessageBox.Show(Strings.ErrorCannotCreateRelationship);
+                    return;
+                } 
+            }
+
+            // Allow the Dart mixin class to be realized as well as interfaces.
+            if (first is TypeShape shape3 && 
+                (second as ClassShape).ClassType.Modifier == ClassModifier.Mixin)
+            {
+                try
+                {
+                    Func<Relationship> _connectionFactory = () =>
+                            diagram.AddRealization(shape3.TypeBase, (second as ClassShape).ClassType);
+                    var command = new AddConnectionCommand(diagram, _connectionFactory);
+                    command.Execute();
+                    diagram.TrackCommand(command);
+                    return;
+                }
+                catch (RelationshipException)
+                {
+                    MessageBox.Show(Strings.ErrorCannotCreateRelationship);
+                    return;
                 }
             }
-            else
-            {
-                MessageBox.Show(Strings.ErrorCannotCreateRelationship);
-            }
+
+            MessageBox.Show(Strings.ErrorCannotCreateRelationship);
         }
 
         private void CreateDependency()

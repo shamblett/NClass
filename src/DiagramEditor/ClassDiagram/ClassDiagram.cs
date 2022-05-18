@@ -170,6 +170,12 @@ namespace NClass.DiagramEditor.ClassDiagram
             return model.AddRealization(implementer, baseType);
         }
 
+        public RealizationRelationship AddRealization(TypeBase implementer,
+           ClassType baseType)
+        {
+            return model.AddRealization(implementer, baseType);
+        }
+
         private RealizationRelationship AddRealization(RealizationRelationship realization)
         {
             Shape startShape = GetShape(realization.First);

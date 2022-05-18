@@ -21,7 +21,7 @@ namespace NClass.Core
 {
     public interface IInterfaceImplementer
     {
-        IEnumerable<InterfaceType> Interfaces
+        IEnumerable<CompositeType> Interfaces
         {
             get;        
         }
@@ -61,5 +61,16 @@ namespace NClass.Core
         void AddInterface(InterfaceType interfaceType);
 
         void RemoveInterface(InterfaceType interfaceType);
+
+        /// <exception cref="RelationshipException">
+        /// The language of <paramref name="interfaceType"/> does not equal.-or-
+        /// <paramref name="interfaceType"/> is earlier implemented interface.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="interfaceType"/> is null.
+        /// </exception>
+        void AddInterface(ClassType interfaceType);
+
+        void RemoveInterface(ClassType interfaceType);
     }
 }

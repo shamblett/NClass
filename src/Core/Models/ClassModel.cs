@@ -182,6 +182,16 @@ namespace NClass.Core.Models
             return realization;
         }
 
+        public RealizationRelationship AddRealization(TypeBase implementer,
+            ClassType baseType)
+        {
+            RealizationRelationship realization = new RealizationRelationship(
+                implementer, baseType);
+
+            AddRelationship(realization);
+            return realization;
+        }
+
         /// <exception cref="ArgumentNullException">
         /// <paramref name="first"/> or <paramref name="second"/> is null.
         /// </exception>
