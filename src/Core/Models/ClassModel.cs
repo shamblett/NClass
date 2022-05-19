@@ -267,7 +267,23 @@ namespace NClass.Core.Models
                             break;
 
                         case "Realization":
-                            relationship = AddRealization(first as TypeBase, second as InterfaceType);
+                            var interfaceType = second as InterfaceType;
+                            if ( interfaceType != null )
+                            {
+                                relationship = AddRealization(first as TypeBase, interfaceType);
+                                break;
+                            }
+                            var compositeType = second as CompositeType;
+                            if ( compositeType != null)
+                            {
+                                var classType = compositeType as ClassType;
+                                if (classType != null)
+                                {
+                                    relationship = AddRealization(first as TypeBase, classType);
+                                    break;
+                                }
+                            }
+                            relationship = null;
                             break;
 
                         case "Dependency":
@@ -290,7 +306,10 @@ namespace NClass.Core.Models
                             throw new InvalidDataException(
                                 Strings.ErrorCorruptSaveFormat);
                     }
-                    relationship.Deserialize(node);
+                    if (relationship != null)
+                    {
+                        relationship.Deserialize(node);
+                    }
                 }
                 catch (ArgumentNullException ex)
                 {
