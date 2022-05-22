@@ -182,6 +182,13 @@ namespace NClass.Core.Models
             return realization;
         }
 
+        /// <exception cref="RelationshipException">
+        /// Cannot create relationship between the two types.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="implementer"/> or <paramref name="baseType"/> is null.
+        /// </exception>
+        /// Foor Dart support the mixin class can also be used as an interface.
         public RealizationRelationship AddRealization(TypeBase implementer,
             ClassType baseType)
         {
@@ -267,6 +274,8 @@ namespace NClass.Core.Models
                             break;
 
                         case "Realization":
+                            // For Dart support check for the mixin class as it can be used either as a
+                            // class or as an interface
                             var interfaceType = second as InterfaceType;
                             if ( interfaceType != null )
                             {

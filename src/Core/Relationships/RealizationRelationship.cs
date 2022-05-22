@@ -36,6 +36,15 @@ namespace NClass.Core
             Attach();
         }
 
+
+        /// <exception cref="RelationshipException">
+        /// Cannot create realization.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="implementer"/> is null.-or-
+        /// <paramref name="baseType"/> is null.
+        /// </exception>
+        /// For dart support the mixin class can also be an interface
         internal RealizationRelationship(TypeBase implementer, ClassType baseType)
            : base(implementer, baseType)
         {

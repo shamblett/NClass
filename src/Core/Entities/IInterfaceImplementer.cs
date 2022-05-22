@@ -69,6 +69,7 @@ namespace NClass.Core
         /// <exception cref="ArgumentNullException">
         /// <paramref name="interfaceType"/> is null.
         /// </exception>
+        /// For Dart support the mixin class can alos be used as an interface.
         void AddInterface(ClassType interfaceType);
 
         void RemoveInterface(ClassType interfaceType);

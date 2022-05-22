@@ -153,7 +153,8 @@ namespace NClass.DiagramEditor.ClassDiagram
                 } 
             }
 
-            // Allow the Dart mixin class to be realized as well as interfaces.
+            // Allow the Dart mixin class to be realized as well as interfaces as it can be used either as
+            // a class or an interface.
             if (first is TypeShape shape3 && 
                 (second as ClassShape).ClassType.Modifier == ClassModifier.Mixin)
             {
