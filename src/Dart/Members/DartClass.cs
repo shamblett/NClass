@@ -180,11 +180,6 @@ namespace NClass.Dart
         {
             Constructor constructor = new DartConstructor(this);
 
-            if (Modifier == ClassModifier.Abstract)
-                constructor.AccessModifier = AccessModifier.Protected;
-            else if (Modifier != ClassModifier.Static)
-                constructor.AccessModifier = AccessModifier.Public;
-
             AddOperation(constructor);
             return constructor;
         }
@@ -232,18 +227,29 @@ namespace NClass.Dart
         public override string GetDeclaration()
         {
             StringBuilder builder = new StringBuilder();
+            var className = Name;
 
-            if (AccessModifier != AccessModifier.Default)
+            if (AccessModifier == AccessModifier.Private)
             {
-                builder.Append(Language.GetAccessString(AccessModifier, true));
-                builder.Append(" ");
+                className += "_";
             }
             if (Modifier != ClassModifier.None)
             {
-                builder.Append(Language.GetClassModifierString(Modifier, true));
-                builder.Append(" ");
+                if (Modifier == ClassModifier.Abstract)
+                {
+                    builder.Append(Language.GetClassModifierString(Modifier, true));
+                    builder.Append(" ");
+                    builder.AppendFormat("class {0}", className);
+                }
+                else if (Modifier == ClassModifier.Mixin)
+                {
+                    builder.AppendFormat("mixin {0}", className);
+                }
             }
-            builder.AppendFormat("class {0}", Name);
+            else
+            {
+                builder.AppendFormat("class {0}", className);
+            }
 
             if (HasExplicitBase || InterfaceList.Count > 0)
             {

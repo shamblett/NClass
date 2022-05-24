@@ -159,23 +159,9 @@ namespace NClass.CodeGenerator
         {
             var outString = declaration;
 
-            // Collapse multiple spaces into a single space
-            outString = string.Join(" ", outString.Split(new char[] { ' ' }, 
-                StringSplitOptions.RemoveEmptyEntries));
-
             // Public/Private
             var isPrivate = false;
             var isOverride = false;
-            if (outString.StartsWith("public "))
-            {
-                outString = outString.Replace("public ", "");
-            }
-
-            if (outString.StartsWith("private "))
-            {
-                outString = outString.Replace("private ", "");
-                isPrivate = true;
-            }
             if ( outString.Contains("override"))
             {
                 outString = outString.Replace("override ", "");
@@ -195,8 +181,7 @@ namespace NClass.CodeGenerator
 
             if (type is ClassType)
             {
-                var condition = ConditionClassDeclaration(conditioned);
-                WriteLine(condition.declaration);
+                WriteLine(conditioned.declaration);
                 WriteLine("{");
                 IndentLevel++;
 
