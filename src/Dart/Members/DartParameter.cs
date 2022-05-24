@@ -93,14 +93,6 @@ namespace NClass.Dart
             {
                 return Type + " " + Name + " = " + DefaultValue;
             }
-            else if (Modifier == ParameterModifier.In)
-            {
-                return Type + " " + Name;
-            }
-            else if (Modifier == ParameterModifier.Inout)
-            {
-                return string.Format("ref {0} {1}", Type, Name);
-            }
             else
             {
                 return string.Format("{0} {1} {2}",

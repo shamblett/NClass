@@ -43,7 +43,6 @@ namespace NClass.Dart
             {
                 if (IsTypeNested ||
                     value == AccessModifier.Default ||
-                    value == AccessModifier.Internal ||
                     value == AccessModifier.Public)
                 {
                     base.AccessModifier = value;
@@ -53,7 +52,7 @@ namespace NClass.Dart
 
         public override AccessModifier DefaultAccess
         {
-            get { return AccessModifier.Internal; }
+            get { return AccessModifier.Public; }
         }
 
         public override Language Language
@@ -119,13 +118,14 @@ namespace NClass.Dart
         public override string GetDeclaration()
         {
             StringBuilder builder = new StringBuilder();
+            var enumName = Name;
 
-            if (AccessModifier != AccessModifier.Default)
+            if (AccessModifier == AccessModifier.Private)
             {
-                builder.Append(Language.GetAccessString(AccessModifier, true));
-                builder.Append(" ");
+                enumName += "_";
             }
-            builder.AppendFormat("enum {0}", Name);
+
+            builder.AppendFormat("enum {0}", enumName);
 
             return builder.ToString();
         }

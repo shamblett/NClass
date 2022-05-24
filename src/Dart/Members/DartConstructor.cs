@@ -144,11 +144,13 @@ namespace NClass.Dart
         public override string GetDeclaration()
         {
             StringBuilder builder = new StringBuilder(50);
+            var constructorName = Name;
 
-            if (AccessModifier != AccessModifier.Default) {
-                builder.Append(Language.GetAccessString(AccessModifier, true));
-                builder.Append(" ");
+            if (AccessModifier == AccessModifier.Private)
+            {
+                constructorName += "_";
             }
+
             if (IsStatic) {
                 builder.Append("static ");
             }
@@ -158,7 +160,7 @@ namespace NClass.Dart
                 builder.Append("factory ");
             }
 
-            builder.AppendFormat("{0}(", Name);
+            builder.AppendFormat("{0}(", constructorName);
 
             for (int i = 0; i < ArgumentList.Count; i++) {
                 builder.Append(ArgumentList[i]);

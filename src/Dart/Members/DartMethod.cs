@@ -137,7 +137,7 @@ namespace NClass.Dart
         {
             get
             {
-                return (base.IsTypeReadonly || IsConversionOperator);
+                return false;
             }
         }
 
@@ -239,7 +239,31 @@ namespace NClass.Dart
 
         public override string GetDeclaration()
         {
-            return GetDeclarationLine(true);
+            StringBuilder builder = new StringBuilder(100);
+            var methodName = Name;
+
+            if (AccessModifier == AccessModifier.Private)
+            {
+                methodName += "_";
+            }
+            if (IsOverride)
+                builder.AppendLine("@override");
+            if (IsStatic)
+                builder.Append("static ");
+            builder.AppendFormat("{0} {1}(", Type, methodName);
+
+            for (int i = 0; i < ArgumentList.Count; i++)
+            {
+                builder.Append(ArgumentList[i]);
+                if (i < ArgumentList.Count - 1)
+                    builder.Append(", ");
+            }
+            builder.Append(")");
+            if ( IsAbstract)
+            {
+                builder.Append(";");
+            }
+            return builder.ToString();
         }
 
         public string GetDeclarationLine(bool withSemicolon)
@@ -250,16 +274,11 @@ namespace NClass.Dart
                 builder.Append(Language.GetAccessString(AccessModifier, true));
                 builder.Append(" ");
             }
-            if (IsHider)
-                builder.Append("new ");
+           
             if (IsStatic)
                 builder.Append("static ");
-            if (IsVirtual)
-                builder.Append("virtual ");
             if (IsAbstract)
                 builder.Append("abstract ");
-            if (IsSealed)
-                builder.Append("sealed ");
             if (IsOverride)
                 builder.Append("override ");
 

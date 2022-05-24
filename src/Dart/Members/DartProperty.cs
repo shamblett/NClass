@@ -86,7 +86,7 @@ namespace NClass.Dart
 
         public bool IsIndexer
         {
-            get { return (Name == "this"); }
+            get { return false; }
         }
 
         public override bool IsStatic
@@ -227,28 +227,39 @@ namespace NClass.Dart
 
         public override string GetDeclaration()
         {
-            return GetDeclarationLine(false);
+            StringBuilder builder = new StringBuilder(100);
+            if ( IsOverride)
+            {
+                builder.AppendLine("@override");
+            }
+            var privateName = "_" + Name;
+            builder.AppendLine(Type + " " + privateName + ";");
+            if (!IsWriteonly)
+            {
+                builder.AppendLine(Type + " get " + Name + " => " + privateName + ";");
+
+            }
+            if (!IsReadonly)
+            {
+                builder.AppendLine("set  " + Name + "(" + Type + " value) => " + privateName + " = value;");
+            }
+
+            return builder.ToString();
         }
 
         public string GetDeclarationLine(bool showAccessors)
         {
-            StringBuilder builder = new StringBuilder(50);
+            StringBuilder builder = new StringBuilder(80);
 
             if (AccessModifier != AccessModifier.Default) {
                 builder.Append(Language.GetAccessString(AccessModifier, true));
                 builder.Append(" ");
             }
 
-            if (IsHider)
-                builder.Append("new ");
             if (IsStatic)
                 builder.Append("static ");
-            if (IsVirtual)
-                builder.Append("virtual ");
             if (IsAbstract)
                 builder.Append("abstract ");
-            if (IsSealed)
-                builder.Append("sealed ");
             if (IsOverride)
                 builder.Append("override ");
 

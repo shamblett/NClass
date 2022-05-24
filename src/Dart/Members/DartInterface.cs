@@ -44,7 +44,6 @@ namespace NClass.Dart
             {
                 if (IsTypeNested ||
                     value == AccessModifier.Default ||
-                    value == AccessModifier.Internal ||
                     value == AccessModifier.Public)
                 {
                     base.AccessModifier = value;
@@ -54,7 +53,7 @@ namespace NClass.Dart
 
         public override AccessModifier DefaultAccess
         {
-            get { return AccessModifier.Internal; }
+            get { return AccessModifier.Public; }
         }
 
         public override AccessModifier DefaultMemberAccess
@@ -137,20 +136,28 @@ namespace NClass.Dart
         public override string GetDeclaration()
         {
             StringBuilder builder = new StringBuilder(30);
+            var interfaceName = Name;
 
-            if (AccessModifier != AccessModifier.Default)
+            if (AccessModifier == AccessModifier.Private)
             {
-                builder.Append(Language.GetAccessString(AccessModifier, true));
-                builder.Append(" ");
+                interfaceName += "_";
             }
-            builder.AppendFormat("interface {0}", Name);
+
+            builder.AppendFormat("abstract {0}", interfaceName);
 
             if (HasExplicitBase)
             {
-                builder.Append(" : ");
+                builder.Append(" extends ");
                 for (int i = 0; i < BaseList.Count; i++)
                 {
-                    builder.Append(BaseList[i].Name);
+                    if (BaseList[i].AccessModifier != AccessModifier.Private) {
+                        builder.Append(BaseList[i].Name);
+                    }
+                    else
+                    {
+                        builder.Append("_");
+                        builder.Append(BaseList[i].Name);
+                    }
                     if (i < BaseList.Count - 1)
                         builder.Append(", ");
                 }

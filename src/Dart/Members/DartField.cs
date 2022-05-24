@@ -117,28 +117,32 @@ namespace NClass.Dart
 
         public override string GetDeclaration()
         {
-            return GetDeclarationLine(true);
+            StringBuilder builder = new StringBuilder(100);
+            var fieldName = Name;
+
+            if (AccessModifier == AccessModifier.Private)
+            {
+                fieldName += "_";
+            }
+
+            builder.AppendFormat("{0} {1};", Type, fieldName);
+
+            return builder.ToString();
         }
 
         public string GetDeclarationLine(bool withSemicolon)
         {
-            StringBuilder builder = new StringBuilder(50);
+            StringBuilder builder = new StringBuilder(100);
 
             if (AccessModifier != AccessModifier.Default) {
                 builder.Append(Language.GetAccessString(AccessModifier, true));
                 builder.Append(" ");
             }
 
-            if (IsHider)
-                builder.Append("new ");
             if (IsConstant)
                 builder.Append("const ");
             if (IsStatic)
                 builder.Append("static ");
-            if (IsReadonly)
-                builder.Append("readonly ");
-            if (IsVolatile)
-                builder.Append("volatile ");
 
             builder.AppendFormat("{0} {1}", Type, Name);
             if (HasInitialValue)
