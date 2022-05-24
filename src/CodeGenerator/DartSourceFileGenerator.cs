@@ -31,20 +31,6 @@ namespace NClass.CodeGenerator
         {
         }
 
-        private struct Condition
-        {
-           public Condition(String declaration, bool isPrivate, bool isOverride)
-            {
-                this.declaration = declaration;
-                this.isPrivate = isPrivate;
-                this.isOverride = isOverride;
-            }
-            public readonly string declaration;
-            public readonly bool isPrivate;
-            public readonly bool isOverride;
-        };
-
-
         protected override string Extension
         {
             get { return ".dart"; }
@@ -76,112 +62,17 @@ namespace NClass.CodeGenerator
             
         }
 
-        private Condition ConditionClassDeclaration(Condition condition)
-        {
-            var outString = condition.declaration;
-            if (condition.isPrivate)
-            {
-                outString = outString.Replace("class ", "class _");
-            }
-
-            // Mixin
-            if (outString.Contains("mixin"))
-            {
-
-                outString = outString.Replace("mixin class", "mixin");
-
-            }
-
-            // Static
-            if (outString.Contains("static"))
-            {
-
-                outString = outString.Replace("static", "/* static */");
-
-            }
-
-            // Extends
-            if ( outString.Contains(":"))
-            {
-                outString = outString.Replace(":", "extends");
-            }
-
-            return new Condition(outString, condition.isPrivate, condition.isOverride);
-        }
-
-        private Condition ConditionInterfaceDeclaration(Condition condition)
-        {
-            var outString = condition.declaration;
-
-            if (condition.isPrivate)
-            {
-                outString = outString.Replace("interface ", "interface _");
-            }
-
-            outString = outString.Replace("interface", "abstract class");
-
-            return new Condition(outString, condition.isPrivate, condition.isOverride);
-        }
-
-        private Condition ConditionFieldDeclaration(Condition condition)
-        {
-            var outString = condition.declaration;
-            if (condition.isPrivate)
-            {
-                string lastWord = outString.Substring(outString.LastIndexOf(' ') + 1);
-                outString = outString.Replace(lastWord, "");
-                lastWord = "_" + lastWord;
-                outString += lastWord;
-            }
-           
-            return new Condition(outString, condition.isPrivate, condition.isOverride);
-        }
-
-        private Condition ConditionOperationDeclaration(Condition condition)
-        {
-            var outString = condition.declaration;
-            if (condition.isPrivate)
-            {
-                string operationName = outString.Substring(outString.IndexOf(' ') + 1);
-                outString = outString.Replace(operationName, "");
-                operationName = "_" + operationName;
-                outString += operationName;
-            }
-
-            if (outString.StartsWith("abstract"))
-            {
-                outString = outString.Replace("abstract","");
-            }
-            return new Condition(outString, condition.isPrivate, condition.isOverride);
-        }
-
-        private Condition ConditionDeclaration(string declaration)
-        {
-            var outString = declaration;
-
-            // Public/Private
-            var isPrivate = false;
-            var isOverride = false;
-            if ( outString.Contains("override"))
-            {
-                outString = outString.Replace("override ", "");
-                isOverride = true;
-            }
-            return new Condition(outString, isPrivate, isOverride);
-        }
-
-
         private void WriteCompositeType(CompositeType type)
         {
             var isInterface = false;
 
             // Pre condition the declaration
-            var conditioned = ConditionDeclaration(type.GetDeclaration());
+            var conditioned = type.GetDeclaration();
            
 
             if (type is ClassType)
             {
-                WriteLine(conditioned.declaration);
+                WriteLine(conditioned);
                 WriteLine("{");
                 IndentLevel++;
 
@@ -194,8 +85,7 @@ namespace NClass.CodeGenerator
 
             if (type is InterfaceType)
             {
-                var condition = ConditionInterfaceDeclaration(conditioned);
-                WriteLine(condition.declaration);
+                WriteLine(conditioned);
                 WriteLine("{");
                 IndentLevel++;
                 isInterface = true;
@@ -229,8 +119,8 @@ namespace NClass.CodeGenerator
 
         private void WriteEnum(EnumType _enum)
         {
-            var condition = ConditionDeclaration(_enum.GetDeclaration());
-            WriteLine(condition.declaration);
+            var condition = _enum.GetDeclaration();
+            WriteLine(condition);
             WriteLine("{");
             IndentLevel++;
 
@@ -251,74 +141,38 @@ namespace NClass.CodeGenerator
 
         private void WriteField(Field field)
         {
-            var condition = ConditionDeclaration(field.GetDeclaration());
-            if (condition.isOverride)
-            {
-                WriteLine("@override");
-            }
-            WriteLine(ConditionFieldDeclaration(condition).declaration);
+           
+            WriteLine(field.GetDeclaration());
         }
 
         private void WriteOperation(Operation operation, bool isInterface, bool isAbstract)
         {
+            var condition = operation.GetDeclaration();
             if (operation is Property)
             {
-                WriteProperty((Property) operation);
+                WriteProperty((Property)operation);
             }
             else if (operation.HasBody)
             {
-                var condition = ConditionDeclaration(operation.GetDeclaration());
-                if ( condition.isOverride)
-                {
-                    WriteLine("@override");
-                }
-                WriteLine(ConditionOperationDeclaration(condition).declaration);
+
+
+                WriteLine(condition);
                 WriteLine("{");
                 IndentLevel++;
                 WriteNotImplementedString();
                 IndentLevel--;
                 WriteLine("}");
             }
-            else if (isInterface)
+            else if (isInterface || isAbstract)
             {
-                var condition = ConditionDeclaration(operation.GetDeclaration());
-                WriteLine(condition.declaration);
-            } else if (isAbstract)
-            {
-                var condition = ConditionDeclaration(operation.GetDeclaration());
-                if (condition.isOverride)
-                {
-                    WriteLine("@override");
-                }
-                WriteLine(ConditionOperationDeclaration(condition).declaration);
-
+                WriteLine(condition);
             }
         }
 
         private void WriteProperty(Property property)
         {
-            var condition = ConditionDeclaration(property.GetDeclaration());
-            
-            // Split the declaration to extract the type and name
-            var parts = condition.declaration.Split(' ');
-            var type = parts[0];
-            var name = parts[1].ToLower();
-            var privateName = "_" + name;
-            var propertyName = char.ToUpper(name[0]) + name.Substring(1);
-
-            // Output the field
-            WriteLine(type + " " + privateName + ";");
-            
-            if (!property.IsWriteonly)
-            {
-                WriteLine(type + " get " + propertyName + " => " + privateName + ";");
-               
-            }
-            if (!property.IsReadonly)
-            {
-                WriteLine("set  " + propertyName + "(" + type + " value) => " + privateName + " = value;");
-            }
-
+            WriteLine(property.GetDeclaration());
+           
         }
 
         private void WriteNotImplementedString()
