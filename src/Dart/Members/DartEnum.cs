@@ -122,7 +122,7 @@ namespace NClass.Dart
 
             if (AccessModifier == AccessModifier.Private)
             {
-                enumName += "_";
+                enumName = "_" + enumName;
             }
 
             builder.AppendFormat("enum {0}", enumName);

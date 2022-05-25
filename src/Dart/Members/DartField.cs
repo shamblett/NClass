@@ -122,7 +122,7 @@ namespace NClass.Dart
 
             if (AccessModifier == AccessModifier.Private)
             {
-                fieldName += "_";
+                fieldName = "_" + fieldName;
             }
 
             builder.AppendFormat("{0} {1};", Type, fieldName);

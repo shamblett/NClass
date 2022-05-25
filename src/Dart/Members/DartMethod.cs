@@ -142,22 +142,6 @@ namespace NClass.Dart
         }
 
         /// <exception cref="BadSyntaxException">
-        /// Cannot set static modifier.
-        /// </exception>
-        public override bool IsStatic
-        {
-            get
-            {
-                return base.IsStatic;
-            }
-            set
-            {
-
-                base.IsStatic = value;
-            }
-        }
-
-        /// <exception cref="BadSyntaxException">
         /// Cannot set hider modifier.
         /// </exception>
         public override bool IsHider
@@ -244,7 +228,7 @@ namespace NClass.Dart
 
             if (AccessModifier == AccessModifier.Private)
             {
-                methodName += "_";
+                methodName = "_" + methodName;
             }
             if (IsOverride)
                 builder.AppendLine("@override");

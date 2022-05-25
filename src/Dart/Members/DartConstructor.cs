@@ -148,7 +148,7 @@ namespace NClass.Dart
 
             if (AccessModifier == AccessModifier.Private)
             {
-                constructorName += "_";
+                constructorName = "_" + constructorName;
             }
 
             if (IsStatic) {

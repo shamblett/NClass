@@ -231,7 +231,7 @@ namespace NClass.Dart
 
             if (AccessModifier == AccessModifier.Private)
             {
-                className += "_";
+                className = "_" + className;
             }
             if (Modifier != ClassModifier.None)
             {
