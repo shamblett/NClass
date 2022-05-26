@@ -232,7 +232,7 @@ namespace NClass.Dart
             {
                 builder.AppendLine("@override");
             }
-            var privateName = "_" + Name;
+            var privateName = ("_" + Name).ToLower();
             builder.AppendLine(Type + " " + privateName + ";");
             if (!IsWriteonly)
             {
