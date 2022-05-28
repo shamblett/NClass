@@ -95,10 +95,11 @@ namespace NClass.Dart
             }
             else
             {
-                return string.Format("{0} {1} {2}",
-                    Modifier.ToString().ToLower(), Type, Name);
+                return string.Format("{0} {1} ",
+                    Type, Name);
             }
         }
+
 
         public override Parameter Clone()
         {

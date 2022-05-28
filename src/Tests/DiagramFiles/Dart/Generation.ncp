@@ -14,9 +14,9 @@
         <Member type="Field">public int publicField</Member>
         <Member type="Constructor">Shoe()</Member>
         <Member type="Constructor">factory ShoeFactory()</Member>
-        <Member type="Constructor">Shoe.withSize(in int size)</Member>
+        <Member type="Constructor">Shoe.withSize(int size )</Member>
         <Member type="Property">public int Size { get; }</Member>
-        <Member type="Method">public bool willFit(in int footSize)</Member>
+        <Member type="Method">public bool willFit(int footSize )</Member>
         <Member type="Property">public int LaceLength { get; set; }</Member>
         <Member type="Method">private void privateMethod()</Member>
         <Modifier>None</Modifier>
@@ -53,7 +53,7 @@
         <Location left="30" top="23" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
-        <Member type="Method">int add(in int a, in int b)</Member>
+        <Member type="Method">int add(int a , int b )</Member>
         <Member type="Method">void writeLine()</Member>
       </Entity>
     </Entities>
