@@ -230,18 +230,18 @@ namespace NClass.Dart
             StringBuilder builder = new StringBuilder(100);
             if ( IsOverride)
             {
-                builder.AppendLine("@override");
+                builder.Append("@override");
             }
             var privateName = ("_" + Name).ToLower();
-            builder.AppendLine(Type + " " + privateName + ";");
+            builder.Append(Type + " " + privateName + ";");
             if (!IsWriteonly)
             {
-                builder.AppendLine(Type + " get " + Name + " => " + privateName + ";");
+                builder.Append(Type + " get " + Name + " => " + privateName + ";");
 
             }
             if (!IsReadonly)
             {
-                builder.AppendLine("set  " + Name + "(" + Type + " value) => " + privateName + " = value;");
+                builder.Append("set  " + Name + "(" + Type + " value) => " + privateName + " = value;");
             }
 
             return builder.ToString();

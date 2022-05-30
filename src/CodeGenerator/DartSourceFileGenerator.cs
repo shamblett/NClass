@@ -16,8 +16,8 @@
 
 using System;
 using System.Collections.Specialized;
+using System.Linq;
 using NClass.Core;
-using NClass.Dart;
 
 namespace NClass.CodeGenerator
 {
@@ -171,8 +171,15 @@ namespace NClass.CodeGenerator
 
         private void WriteProperty(Property property)
         {
-            WriteLine(property.GetDeclaration());
-           
+            var propertyLine = property.GetDeclaration();
+            // Split on ';' and write each line separately
+            string[] propLines = propertyLine.Split(';');
+            propLines = propLines.Take(propLines.Length - 1).ToArray();
+            foreach (var propLine in propLines)
+            {
+                WriteLine(propLine + ';');
+            }
+
         }
 
         private void WriteNotImplementedString()
