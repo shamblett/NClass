@@ -154,8 +154,10 @@ namespace NClass.CodeGenerator
             }
             else if (operation.HasBody)
             {
-
-
+                if (operation.IsOverride)
+                {
+                    WriteLine("@override");
+                }
                 WriteLine(condition);
                 WriteLine("{");
                 IndentLevel++;

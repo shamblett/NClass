@@ -230,8 +230,6 @@ namespace NClass.Dart
             {
                 methodName = "_" + methodName;
             }
-            if (IsOverride)
-                builder.AppendLine("@override");
             if (IsStatic)
                 builder.Append("static ");
             builder.AppendFormat("{0} {1}(", Type, methodName);

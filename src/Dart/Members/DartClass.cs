@@ -17,6 +17,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Xml.Schema;
 using NClass.Core;
 using NClass.Translations;
@@ -251,20 +252,53 @@ namespace NClass.Dart
                 builder.AppendFormat("class {0}", className);
             }
 
-            if (HasExplicitBase || InterfaceList.Count > 0)
+            // Check for a base class
+            if (HasExplicitBase)
             {
-                builder.Append(" : ");
-                if (HasExplicitBase)
+                builder.Append(" extends " + BaseClass.Name);
+            }
+            // Check for interfaces and mixins
+            if (InterfaceList.Count > 0)
+            {
+                // Separate into interfaces(implements) and mixins(with)
+                var mixins = new List<ClassType>();
+                var interfaces = new List<InterfaceType>();
+             
+                foreach(var i in InterfaceList)
                 {
-                    builder.Append(BaseClass.Name);
-                    if (InterfaceList.Count > 0)
-                        builder.Append(", ");
+                    if (i is ClassType)
+                    {
+                        mixins.Add(i as ClassType);
+                    }
+                    else
+                    {
+                        interfaces.Add(i as InterfaceType);
+                    }
                 }
-                for (int i = 0; i < InterfaceList.Count; i++)
+
+                // Interfaces first
+                if (interfaces.Count > 0)
                 {
-                    builder.Append(InterfaceList[i].Name);
-                    if (i < InterfaceList.Count - 1)
-                        builder.Append(", ");
+                    builder.Append(" implements ");
+
+                    for (int j = 0; j < interfaces.Count; j++)
+                    {
+                            builder.Append(interfaces[j].Name);
+                            if (j < interfaces.Count - 1)
+                                builder.Append(", ");
+                    }
+                }
+
+                if (mixins.Count > 0)
+                {
+                    builder.Append(" with ");
+
+                    for (int j = 0; j < mixins.Count; j++)
+                    {
+                        builder.Append(mixins[j].Name);
+                        if (j < mixins.Count - 1)
+                            builder.Append(", ");
+                    }
                 }
             }
 
