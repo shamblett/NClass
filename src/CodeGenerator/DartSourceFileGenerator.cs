@@ -167,7 +167,11 @@ namespace NClass.CodeGenerator
             }
             else if (isInterface || isAbstract)
             {
-                WriteLine(condition);
+                if (operation.IsOverride)
+                {
+                    WriteLine("@override");
+                }
+                WriteLine(condition + ";");
             }
         }
 

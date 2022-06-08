@@ -143,7 +143,7 @@ namespace NClass.Dart
                 interfaceName += "_";
             }
 
-            builder.AppendFormat("abstract {0}", interfaceName);
+            builder.AppendFormat("abstract class {0}", interfaceName);
 
             if (HasExplicitBase)
             {

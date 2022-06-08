@@ -241,10 +241,6 @@ namespace NClass.Dart
                     builder.Append(", ");
             }
             builder.Append(")");
-            if ( IsAbstract)
-            {
-                builder.Append(";");
-            }
             return builder.ToString();
         }
 
