@@ -76,7 +76,7 @@ namespace NClass.Core
             if (interfaceType == null)
                 throw new ArgumentNullException("interfaceType");
 
-            foreach (InterfaceType implementedInterface in InterfaceList) {
+            foreach (var implementedInterface in InterfaceList) {
                 if (interfaceType == implementedInterface)
                     throw new RelationshipException(Strings.ErrorCannotAddSameInterface);
             }
