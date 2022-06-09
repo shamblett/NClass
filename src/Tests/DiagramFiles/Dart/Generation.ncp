@@ -7,18 +7,19 @@
       <Entity type="Class">
         <Name>Shoe</Name>
         <Access>Public</Access>
-        <Location left="48" top="44" />
+        <Location left="52" top="46" />
         <Size width="622" height="461" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private int privateField</Member>
         <Member type="Field">public int publicField</Member>
         <Member type="Constructor">Shoe()</Member>
-        <Member type="Constructor">factory ShoeFactory()</Member>
+        <Member type="Constructor">factory Shoe.IsFactory()</Member>
         <Member type="Constructor">Shoe.withSize(int size )</Member>
         <Member type="Property">public int Size { get; }</Member>
         <Member type="Method">public bool willFit(int footSize )</Member>
         <Member type="Property">public int LaceLength { get; set; }</Member>
         <Member type="Method">private void privateMethod()</Member>
+        <Member type="Method">public static void StaticMethod()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
