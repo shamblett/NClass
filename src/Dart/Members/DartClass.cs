@@ -276,19 +276,7 @@ namespace NClass.Dart
                     }
                 }
 
-                // Interfaces first
-                if (interfaces.Count > 0)
-                {
-                    builder.Append(" implements ");
-
-                    for (int j = 0; j < interfaces.Count; j++)
-                    {
-                            builder.Append(interfaces[j].Name);
-                            if (j < interfaces.Count - 1)
-                                builder.Append(", ");
-                    }
-                }
-
+                // Mixins first
                 if (mixins.Count > 0)
                 {
                     builder.Append(" with ");
@@ -298,6 +286,19 @@ namespace NClass.Dart
                         builder.Append(mixins[j].Name);
                         if (j < mixins.Count - 1)
                             builder.Append(", ");
+                    }
+                }
+
+                // Then interfaces
+                if (interfaces.Count > 0)
+                {
+                    builder.Append(" implements ");
+
+                    for (int j = 0; j < interfaces.Count; j++)
+                    {
+                            builder.Append(interfaces[j].Name);
+                            if (j < interfaces.Count - 1)
+                                builder.Append(", ");
                     }
                 }
             }
