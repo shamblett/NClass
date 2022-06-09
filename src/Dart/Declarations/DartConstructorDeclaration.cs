@@ -8,11 +8,10 @@ namespace NClass.Dart
     public class DartConstructorDeclaration : IDartConstructorDeclaration
     {
         // [<access>] [static] <name>([<args>])
-        const string ConstructorPattern =
+        private const string ConstructorPattern =
             @"^\s*" + DartLanguage.AccessPattern + @"(?<modifier>factory\s+)?" +
             @"(?<name>" + DartLanguage.NamePattern + ")" +
-            @"(?<namedconstructor>" + DartLanguage.NamedConstructorPattern + ")" +
-            @"\((?(static)|(?<args>.*))\)" + DartLanguage.DeclarationEnding;
+            @"(?<namedconstructor>" + DartLanguage.NamedConstructorPattern + ")";
 
         static readonly Regex constructorRegex =
             new Regex(ConstructorPattern, RegexOptions.ExplicitCapture);

@@ -29,14 +29,6 @@
         <Modifier>Abstract</Modifier>
       </Entity>
       <Entity type="Class">
-        <Name>Static</Name>
-        <Access>Public</Access>
-        <Location left="644" top="30" />
-        <Size width="162" height="216" />
-        <Collapsed>False</Collapsed>
-        <Modifier>Static</Modifier>
-      </Entity>
-      <Entity type="Class">
         <Name>Mixin</Name>
         <Access>Public</Access>
         <Location left="53" top="294" />
@@ -84,6 +76,7 @@
         <Member type="Field">public const int hashCode = 200</Member>
         <Member type="Method">public bool hasBeenRead()</Member>
         <Member type="Method">public void printDetails()</Member>
+        <Member type="Method">public static void testStatic()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -115,9 +108,9 @@
         <Member type="Field">public const int hashCode = 200</Member>
         <Member type="Method">public bool hasBeenRead()</Member>
         <Member type="Method">public void printDetails()</Member>
-        <Member type="Constructor">public Book(String name)</Member>
-        <Member type="Constructor">public Book()</Member>
-        <Member type="Constructor">public Book.named()</Member>
+        <Member type="Constructor">Book()</Member>
+        <Member type="Constructor">Book()</Member>
+        <Member type="Constructor">Book.named()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -126,12 +119,20 @@
         <Location left="94" top="517" />
         <Size width="374" height="247" />
         <Collapsed>False</Collapsed>
-        <Member type="Constructor">public Shoe.named()</Member>
-        <Member type="Constructor">public Shoe()</Member>
-        <Member type="Constructor">public Shoe.anotherName(String anotherName)</Member>
-        <Member type="Constructor">public Shoe.yetAnotherNamed()</Member>
+        <Member type="Constructor">Shoe.named()</Member>
+        <Member type="Constructor">Shoe()</Member>
+        <Member type="Constructor">Shoe.anotherName()</Member>
+        <Member type="Constructor">Shoe.yetAnotherNamed()</Member>
         <Member type="Property">public int Size { get; }</Member>
         <Member type="Property">public int LaceHoles { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Animal</Name>
+        <Access>Public</Access>
+        <Location left="805" top="91" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>

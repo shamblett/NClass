@@ -150,7 +150,6 @@ namespace NClass.Dart
             // validClassModifiers initialization
             validClassModifiers = new Dictionary<ClassModifier, string>(3);
             validClassModifiers.Add(ClassModifier.Abstract, "Abstract");
-            validClassModifiers.Add(ClassModifier.Static, "Static");
             validClassModifiers.Add(ClassModifier.Mixin, "Mixin");
 
             // validFieldModifiers initialization
