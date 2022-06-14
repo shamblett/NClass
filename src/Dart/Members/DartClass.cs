@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Xml.Schema;
 using NClass.Core;
+using NClass.Core.Entities;
 using NClass.Translations;
 
 namespace NClass.Dart

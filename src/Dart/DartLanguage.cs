@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using NClass.Core;
+using NClass.Core.Entities;
 using NClass.Translations;
 
 namespace NClass.Dart
@@ -561,11 +562,6 @@ namespace NClass.Dart
         public override bool ExplicitVirtualMethods
         {
             get { return false; }
-        }
-
-        public override bool IsOopLanguage
-        {
-            get { return true; }
         }
     }
 }

@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using NClass.Core;
+using NClass.Core.Entities;
 using NClass.DiagramEditor.ClassDiagram.Shapes;
 using NClass.Translations;
 using NClass.DiagramEditor.ClassDiagram.Dialogs;
@@ -168,7 +169,7 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
                 toolPrivate.Visible = false;
             }
             // Private Oop language
-            if (language.IsOopLanguage && language.ValidAccessModifiers.ContainsKey(AccessModifier.Private))
+            if (language.ValidAccessModifiers.ContainsKey(AccessModifier.Private))
             {
                 toolPrivate.Visible = true;
                 toolPrivate.Text = language.ValidAccessModifiers[AccessModifier.Private];

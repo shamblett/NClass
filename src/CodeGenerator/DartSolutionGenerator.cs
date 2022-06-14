@@ -15,8 +15,6 @@
 // 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 using System;
-using System.IO;
-using System.Windows.Forms;
 using NClass.Core;
 using NClass.Dart;
 using NClass.Core.Models;
@@ -25,7 +23,7 @@ namespace NClass.CodeGenerator
 {
     internal sealed class DartSolutionGenerator : SolutionGenerator
     {
-        SolutionType version = SolutionType.VisualStudio2017;
+        SolutionType version = SolutionType.Dart;
 
         /// <exception cref="ArgumentNullException">
         /// <paramref name="project"/> is null.
@@ -47,16 +45,6 @@ namespace NClass.CodeGenerator
                 {
                     version = value;
                 }
-            }
-        }
-
-        private string VersionNumber => "2.17.0";
-
-        private string VersionString
-        {
-            get
-            {
-                return "2.17.0";
             }
         }
 

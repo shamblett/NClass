@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using NClass.Translations;
 
-namespace NClass.Core
+namespace NClass.Core.Entities
 {
     public abstract class SingleInharitanceType : CompositeType, IInterfaceImplementer
     {
@@ -97,8 +97,9 @@ namespace NClass.Core
             if (interfaceType == null)
                 throw new ArgumentNullException("interfaceType");
 
-            foreach (ClassType implementedInterface in InterfaceList)
+            foreach (var compositeType in InterfaceList)
             {
+                var implementedInterface = (ClassType) compositeType;
                 if (interfaceType == implementedInterface)
                     throw new RelationshipException(Strings.ErrorCannotAddSameInterface);
             }

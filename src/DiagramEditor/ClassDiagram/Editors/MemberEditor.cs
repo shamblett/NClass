@@ -19,6 +19,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
 using NClass.Core;
+using NClass.Core.Entities;
 using NClass.DiagramEditor.ClassDiagram.Shapes;
 using NClass.DiagramEditor.Commands;
 using NClass.DiagramEditor.Diagrams;

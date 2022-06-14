@@ -19,9 +19,9 @@ using NClass.Core;
 
 namespace NClass.CodeGenerator
 {
-    public class Generator
+    public sealed class Generator
     {
-        SolutionGenerator solutionGenerator;
+        readonly SolutionGenerator solutionGenerator;
 
         /// <exception cref="ArgumentNullException">
         /// <paramref name="project"/> is null.
@@ -34,7 +34,7 @@ namespace NClass.CodeGenerator
             solutionGenerator = CreateSolutionGenerator(project, type);
         }
 
-        protected virtual SolutionGenerator CreateSolutionGenerator(Project project, SolutionType type)
+        private SolutionGenerator CreateSolutionGenerator(Project project, SolutionType type)
         {
             if (type == SolutionType.Dart)
             {

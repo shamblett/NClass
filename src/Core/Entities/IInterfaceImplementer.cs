@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace NClass.Core
+namespace NClass.Core.Entities
 {
     public interface IInterfaceImplementer
     {

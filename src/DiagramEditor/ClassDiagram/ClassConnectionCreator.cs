@@ -18,6 +18,7 @@ using System;
 using NClass.Core;
 using NClass.DiagramEditor.ClassDiagram.Shapes;
 using System.Windows.Forms;
+using NClass.Core.Entities;
 using NClass.DiagramEditor.Commands;
 using NClass.Translations;
 using NClass.DiagramEditor.Diagrams;

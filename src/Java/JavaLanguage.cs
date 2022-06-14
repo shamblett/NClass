@@ -20,6 +20,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using NClass.Core;
+using NClass.Core.Entities;
 using NClass.Translations;
 
 namespace NClass.Java
@@ -547,11 +548,6 @@ namespace NClass.Java
         protected override ArgumentList CreateParameterCollection()
         {
             return new JavaArgumentList();
-        }
-
-        public override bool IsOopLanguage
-        {
-            get { return false; }
         }
     }
 }

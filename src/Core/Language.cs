@@ -18,6 +18,7 @@ using System;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using NClass.Core.Entities;
 using NClass.Translations;
 
 namespace NClass.Core
@@ -59,11 +60,6 @@ namespace NClass.Core
         }
 
         public abstract bool SupportsAssemblyImport
-        {
-            get;
-        }
-
-        public abstract bool IsOopLanguage
         {
             get;
         }

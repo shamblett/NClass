@@ -76,8 +76,9 @@ namespace NClass.CodeGenerator
                 WriteLine("{");
                 IndentLevel++;
 
-                foreach (TypeBase nestedType in ((ClassType) type).NestedChilds)
+                foreach (var nestableChild in ((ClassType) type).NestedChilds)
                 {
+                    var nestedType = (TypeBase) nestableChild;
                     WriteType(nestedType);
                     AddBlankLine();
                 }
@@ -117,15 +118,15 @@ namespace NClass.CodeGenerator
             WriteLine("}");
         }
 
-        private void WriteEnum(EnumType _enum)
+        private void WriteEnum(EnumType @enum)
         {
-            var condition = _enum.GetDeclaration();
+            var condition = @enum.GetDeclaration();
             WriteLine(condition);
             WriteLine("{");
             IndentLevel++;
 
-            int valuesRemained = _enum.ValueCount;
-            foreach (EnumValue value in _enum.Values)
+            int valuesRemained = @enum.ValueCount;
+            foreach (EnumValue value in @enum.Values)
             {
                 if (--valuesRemained > 0)
                     WriteLine(value.GetDeclaration() + ",");

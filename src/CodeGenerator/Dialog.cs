@@ -27,7 +27,7 @@ namespace NClass.CodeGenerator
 {
     public partial class Dialog : Form
     {
-        Project project = null;
+        Project project;
 
         public Dialog()
         {
@@ -73,11 +73,11 @@ namespace NClass.CodeGenerator
             Language language = null;
 
             //TODO: ezt le kellene kérdezni egy LanguageManager-tol
-            if (object.Equals(cboLanguage.SelectedItem, "C#"))
+            if (Equals(cboLanguage.SelectedItem, "C#"))
                 language = CSharpLanguage.Instance;
-            else if (object.Equals(cboLanguage.SelectedItem, "Java"))
+            else if (Equals(cboLanguage.SelectedItem, "Java"))
                 language = JavaLanguage.Instance;
-            else if (object.Equals(cboLanguage.SelectedItem, "Dart"))
+            else if (Equals(cboLanguage.SelectedItem, "Dart"))
                 language = DartLanguage.Instance;
 
             if (language != null)
@@ -96,17 +96,17 @@ namespace NClass.CodeGenerator
                 importList.Add(import.ToString());
 
             //TODO: ezt is másképp kéne
-            if (object.Equals(cboLanguage.SelectedItem, "C#"))
+            if (Equals(cboLanguage.SelectedItem, "C#"))
                 Settings.Default.CSharpImportList = importList;
-            else if (object.Equals(cboLanguage.SelectedItem, "Java"))
+            else if (Equals(cboLanguage.SelectedItem, "Java"))
                 Settings.Default.JavaImportList = importList;
-            else if (object.Equals(cboLanguage.SelectedItem, "Dart"))
+            else if (Equals(cboLanguage.SelectedItem, "Dart"))
                 Settings.Default.DartImportList = importList;
         }
 
-        public void ShowDialog(Project project)
+        public void ShowDialog(Project projectName)
         {
-            this.project = project;
+            this.project = projectName;
 
             UpdateTexts();
             UpdateValues();

@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using NClass.Core;
+using NClass.Core.Entities;
 using NClass.Translations;
 
 namespace NClass.CSharp
@@ -619,9 +620,5 @@ namespace NClass.CSharp
             return new CSharpArgumentList();
         }
 
-        public override bool IsOopLanguage
-        {
-            get { return false; }
-        }
     }
 }

@@ -24,7 +24,7 @@ namespace NClass.CodeGenerator
 {
     internal sealed class DartProjectGenerator : ProjectGenerator
     {
-        SolutionType solutionType;
+        readonly SolutionType solutionType;
 
         /// <exception cref="ArgumentNullException">
         /// <paramref name="model"/> is null.
@@ -52,6 +52,11 @@ namespace NClass.CodeGenerator
 
         protected override bool GenerateProjectFiles(string location)
         {
+            if (solutionType != SolutionType.Dart)
+            {
+                throw new ArgumentException("The solution type is not a Dart solution.");
+            }
+
             try
             {
                 string templateDir = Path.Combine(Application.StartupPath, "Templates");
@@ -64,8 +69,11 @@ namespace NClass.CodeGenerator
                     while (!reader.EndOfStream)
                     {
                         string line = reader.ReadLine();
-                        line = line.Replace("${ProjectName}", ProjectName);
-                        writer.WriteLine(line);
+                        if (line != null)
+                        {
+                            line = line.Replace("${ProjectName}", ProjectName);
+                            writer.WriteLine(line);
+                        }
                     }
                 }
 
