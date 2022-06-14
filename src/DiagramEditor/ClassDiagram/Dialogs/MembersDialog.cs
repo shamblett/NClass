@@ -16,7 +16,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using NClass.Core;
@@ -29,12 +28,12 @@ namespace NClass.DiagramEditor.ClassDiagram.Dialogs
 {
     public partial class MembersDialog : Form
     {
-        private IDiagram diagram = null;
-        CompositeType parent = null;
-        Member member = null;
-        bool locked = false;
-        int attributeCount = 0;
-        bool error = false;
+        private IDiagram diagram;
+        CompositeType parent;
+        Member member;
+        bool locked;
+        int attributeCount;
+        bool error;
 
         public event EventHandler ContentsChanged;
 
@@ -653,7 +652,6 @@ namespace NClass.DiagramEditor.ClassDiagram.Dialogs
 
         private void cboAccess_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = cboAccess.SelectedIndex;
 
             if (!locked && member != null)
             {

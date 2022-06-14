@@ -17,7 +17,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 using NClass.Core;
@@ -472,7 +471,7 @@ namespace NClass.DiagramEditor.ClassDiagram
         {
             base.Deserialize(node);
 
-            Language language = null;
+            Language language;
             XmlElement languageElement = node["Language"];
             try
             {
@@ -503,7 +502,7 @@ namespace NClass.DiagramEditor.ClassDiagram
 
         public override string GetShortDescription()
         {
-            return Strings.Language + ": " + model.Language.ToString();
+            return $"{Strings.Language}: {model.Language}";
         }
     }
 }

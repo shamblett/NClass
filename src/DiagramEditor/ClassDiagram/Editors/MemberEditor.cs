@@ -29,8 +29,8 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
 {
     public partial class MemberEditor : FloatingEditor
     {
-        CompositeTypeShape shape = null;
-        bool needValidation = false;
+        CompositeTypeShape shape;
+        bool needValidation;
 
         public MemberEditor()
         {

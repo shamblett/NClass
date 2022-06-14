@@ -29,8 +29,8 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
 {
     public partial class CompositeTypeEditor : TypeEditor
     {
-        CompositeTypeShape shape = null;
-        bool needValidation = false;
+        CompositeTypeShape shape;
+        bool needValidation;
 
         public CompositeTypeEditor()
         {
@@ -83,7 +83,6 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
         private void RefreshValues()
         {
             CompositeType type = shape.CompositeType;
-            Language language = type.Language;
             SuspendLayout();
 
             int cursorPosition = txtName.SelectionStart;
@@ -168,8 +167,8 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
             {
                 toolPrivate.Visible = false;
             }
-            // Private Oop language
-            if (language.ValidAccessModifiers.ContainsKey(AccessModifier.Private))
+            // Private for Dart
+            if (language.ValidAccessModifiers.ContainsKey(AccessModifier.Private) && language.Name == "Dart")
             {
                 toolPrivate.Visible = true;
                 toolPrivate.Text = language.ValidAccessModifiers[AccessModifier.Private];

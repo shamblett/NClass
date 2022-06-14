@@ -157,12 +157,12 @@ namespace NClass.DiagramEditor.ClassDiagram
             // Allow the Dart mixin class to be realized as well as interfaces as it can be used either as
             // a class or an interface.
             if (first is TypeShape shape3 && 
-                (second as ClassShape).ClassType.Modifier == ClassModifier.Mixin)
+                ((ClassShape)second).ClassType.Modifier == ClassModifier.Mixin)
             {
                 try
                 {
                     Func<Relationship> _connectionFactory = () =>
-                            diagram.AddRealization(shape3.TypeBase, (second as ClassShape).ClassType);
+                            diagram.AddRealization(shape3.TypeBase, ((ClassShape)second).ClassType);
                     var command = new AddConnectionCommand(diagram, _connectionFactory);
                     command.Execute();
                     diagram.TrackCommand(command);
@@ -213,7 +213,7 @@ namespace NClass.DiagramEditor.ClassDiagram
             }
             catch (RelationshipException ex)
             {
-                MessageBox.Show(Strings.ErrorCannotCreateRelationship + " " + ex.Message);
+                MessageBox.Show($"{Strings.ErrorCannotCreateRelationship} {ex.Message}");
             }
         }
     }

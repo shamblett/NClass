@@ -38,7 +38,7 @@ namespace NClass.GUI
         DocumentManager docManager = new DocumentManager();
         bool showModelExplorer = true;
         bool showNavigator = true;
-        DynamicMenu dynamicMenu = null;
+        DynamicMenu dynamicMenu;
         List<Plugin> plugins = new List<Plugin>();
 
         public MainForm()
