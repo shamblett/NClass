@@ -55,28 +55,29 @@ namespace NClass.CodeGenerator
 
         private void WriteType(TypeBase type)
         {
-            if (type is CompositeType)
-                WriteCompositeType((CompositeType) type);
-            else if (type is EnumType)
-                WriteEnum((EnumType) type);
-            
+            if (type is CompositeType compositeType)
+                WriteCompositeType(compositeType);
+            else
+            {
+                if (type is EnumType enumType)
+                    WriteEnum(enumType);
+            }
         }
 
         private void WriteCompositeType(CompositeType type)
         {
             var isInterface = false;
 
-            // Pre condition the declaration
-            var conditioned = type.GetDeclaration();
+            var declaration = type.GetDeclaration();
            
 
-            if (type is ClassType)
+            if (type is ClassType classType)
             {
-                WriteLine(conditioned);
+                WriteLine(declaration);
                 WriteLine("{");
                 IndentLevel++;
 
-                foreach (var nestableChild in ((ClassType) type).NestedChilds)
+                foreach (var nestableChild in classType.NestedChilds)
                 {
                     var nestedType = (TypeBase) nestableChild;
                     WriteType(nestedType);
@@ -86,7 +87,7 @@ namespace NClass.CodeGenerator
 
             if (type is InterfaceType)
             {
-                WriteLine(conditioned);
+                WriteLine(declaration);
                 WriteLine("{");
                 IndentLevel++;
                 isInterface = true;
@@ -120,8 +121,8 @@ namespace NClass.CodeGenerator
 
         private void WriteEnum(EnumType @enum)
         {
-            var condition = @enum.GetDeclaration();
-            WriteLine(condition);
+            var declaration = @enum.GetDeclaration();
+            WriteLine(declaration);
             WriteLine("{");
             IndentLevel++;
 
@@ -148,10 +149,10 @@ namespace NClass.CodeGenerator
 
         private void WriteOperation(Operation operation, bool isInterface, bool isAbstract)
         {
-            var condition = operation.GetDeclaration();
-            if (operation is Property)
+            var declaration = operation.GetDeclaration();
+            if (operation is Property property)
             {
-                WriteProperty((Property)operation);
+                WriteProperty(property);
             }
             else if (operation.HasBody)
             {
@@ -159,7 +160,7 @@ namespace NClass.CodeGenerator
                 {
                     WriteLine("@override");
                 }
-                WriteLine(condition);
+                WriteLine(declaration);
                 WriteLine("{");
                 IndentLevel++;
                 WriteNotImplementedString();
@@ -172,7 +173,7 @@ namespace NClass.CodeGenerator
                 {
                     WriteLine("@override");
                 }
-                WriteLine(condition + ";");
+                WriteLine(declaration + ";");
             }
         }
 

@@ -45,7 +45,7 @@ namespace NClass.Core
         /// <paramref name="implementer"/> is null.-or-
         /// <paramref name="baseType"/> is null.
         /// </exception>
-        /// For dart support the mixin class can also be an interface
+        /// For Dart support the mixin class can also be an interface
         internal RealizationRelationship(TypeBase implementer, ClassType baseType)
            : base(implementer, baseType)
         {

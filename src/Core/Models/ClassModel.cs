@@ -16,7 +16,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Net.Configuration;
 using System.Xml;
 using NClass.Translations;
 
@@ -238,97 +237,102 @@ namespace NClass.Core.Models
             XmlNodeList nodeList = root.SelectNodes(
                 "Relationships/Relationship|Relations/Relation"); // old file format
 
-            foreach (XmlElement node in nodeList)
-            {
-                string type = node.GetAttribute("type");
-                string firstString = node.GetAttribute("first");
-                string secondString = node.GetAttribute("second");
-                int firstIndex, secondIndex;
-
-                if (!int.TryParse(firstString, out firstIndex) ||
-                    !int.TryParse(secondString, out secondIndex))
+            if (nodeList != null)
+                foreach (XmlElement node in nodeList)
                 {
-                    throw new InvalidDataException(Strings.ErrorCorruptSaveFormat);
-                }
-                if (firstIndex < 0 || firstIndex >= entities.Count ||
-                    secondIndex < 0 || secondIndex >= entities.Count)
-                {
-                    throw new InvalidDataException(Strings.ErrorCorruptSaveFormat);
-                }
+                    string type = node.GetAttribute("type");
+                    string firstString = node.GetAttribute("first");
+                    string secondString = node.GetAttribute("second");
+                    int firstIndex, secondIndex;
 
-                try
-                {
-                    IEntity first = entities[firstIndex];
-                    IEntity second = entities[secondIndex];
-                    Relationship relationship;
-
-                    switch (type)
+                    if (!int.TryParse(firstString, out firstIndex) ||
+                        !int.TryParse(secondString, out secondIndex))
                     {
-                        case "Association":
-                            relationship = AddAssociation(first as TypeBase, second as TypeBase);
-                            break;
+                        throw new InvalidDataException(Strings.ErrorCorruptSaveFormat);
+                    }
 
-                        case "Generalization":
-                            relationship = AddGeneralization(
-                                first as CompositeType, second as CompositeType);
-                            break;
+                    if (firstIndex < 0 || firstIndex >= entities.Count ||
+                        secondIndex < 0 || secondIndex >= entities.Count)
+                    {
+                        throw new InvalidDataException(Strings.ErrorCorruptSaveFormat);
+                    }
 
-                        case "Realization":
-                            // For Dart support check for the mixin class as it can be used either as a
-                            // class or as an interface
-                            var interfaceType = second as InterfaceType;
-                            if ( interfaceType != null )
-                            {
-                                relationship = AddRealization(first as TypeBase, interfaceType);
+                    try
+                    {
+                        IEntity first = entities[firstIndex];
+                        IEntity second = entities[secondIndex];
+                        Relationship relationship;
+
+                        switch (type)
+                        {
+                            case "Association":
+                                relationship = AddAssociation(first as TypeBase, second as TypeBase);
                                 break;
-                            }
-                            var compositeType = second as CompositeType;
-                            if ( compositeType != null)
-                            {
-                                var classType = compositeType as ClassType;
-                                if (classType != null)
+
+                            case "Generalization":
+                                relationship = AddGeneralization(
+                                    first as CompositeType, second as CompositeType);
+                                break;
+
+                            case "Realization":
+                                // For Dart support check for the mixin class as it can be used either as a
+                                // class or as an interface
+                                var interfaceType = second as InterfaceType;
+                                if (interfaceType != null)
                                 {
-                                    relationship = AddRealization(first as TypeBase, classType);
+                                    relationship = AddRealization(first as TypeBase, interfaceType);
                                     break;
                                 }
-                            }
-                            relationship = null;
-                            break;
 
-                        case "Dependency":
-                            relationship = AddDependency(first as TypeBase, second as TypeBase);
-                            break;
+                                var compositeType = second as CompositeType;
+                                if (compositeType != null)
+                                {
+                                    var classType = compositeType as ClassType;
+                                    if (classType != null)
+                                    {
+                                        relationship = AddRealization(first as TypeBase, classType);
+                                        break;
+                                    }
+                                }
 
-                        case "Nesting":
-                            relationship = AddNesting(first as INestable, second as INestableChild);
-                            break;
+                                relationship = null;
+                                break;
 
-                        case "Comment":
-                        case "CommentRelationship": // Old file format
-                            if (first is Comment)
-                                relationship = AddCommentRelationship(first as Comment, second);
-                            else
-                                relationship = AddCommentRelationship(second as Comment, first);
-                            break;
+                            case "Dependency":
+                                relationship = AddDependency(first as TypeBase, second as TypeBase);
+                                break;
 
-                        default:
-                            throw new InvalidDataException(
-                                Strings.ErrorCorruptSaveFormat);
+                            case "Nesting":
+                                relationship = AddNesting(first as INestable, second as INestableChild);
+                                break;
+
+                            case "Comment":
+                            case "CommentRelationship": // Old file format
+                                if (first is Comment)
+                                    relationship = AddCommentRelationship(first as Comment, second);
+                                else
+                                    relationship = AddCommentRelationship(second as Comment, first);
+                                break;
+
+                            default:
+                                throw new InvalidDataException(
+                                    Strings.ErrorCorruptSaveFormat);
+                        }
+
+                        if (relationship != null)
+                        {
+                            relationship.Deserialize(node);
+                        }
                     }
-                    if (relationship != null)
+                    catch (ArgumentNullException ex)
                     {
-                        relationship.Deserialize(node);
+                        throw new InvalidDataException("Invalid relationship.", ex);
+                    }
+                    catch (RelationshipException ex)
+                    {
+                        throw new InvalidDataException("Invalid relationship.", ex);
                     }
                 }
-                catch (ArgumentNullException ex)
-                {
-                    throw new InvalidDataException("Invalid relationship.", ex);
-                }
-                catch (RelationshipException ex)
-                {
-                    throw new InvalidDataException("Invalid relationship.", ex);
-                }
-            }
         }
 
         protected override IEntity GetEntity(string type)
@@ -369,9 +373,12 @@ namespace NClass.Core.Models
 
         public override void Serialize(XmlElement node)
         {
-            XmlElement languageElement = node.OwnerDocument.CreateElement("Language");
-            languageElement.InnerText = Language.AssemblyName;
-            node.AppendChild(languageElement);
+            if (node.OwnerDocument != null)
+            {
+                XmlElement languageElement = node.OwnerDocument.CreateElement("Language");
+                languageElement.InnerText = Language.AssemblyName;
+                node.AppendChild(languageElement);
+            }
 
             base.Serialize(node);
         }

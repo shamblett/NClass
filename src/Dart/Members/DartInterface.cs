@@ -16,7 +16,6 @@
 
 using System;
 using System.Text;
-using System.Collections.Generic;
 using NClass.Core;
 
 namespace NClass.Dart
@@ -103,9 +102,6 @@ namespace NClass.Dart
             get { return DartLanguage.Instance; }
         }
 
-        /// <exception cref="BadSyntaxException">
-        /// The <paramref name="name"/> does not fit to the syntax.
-        /// </exception>
         public override Method AddMethod()
         {
             Method method = new DartMethod(this);
@@ -114,9 +110,6 @@ namespace NClass.Dart
             return method;
         }
 
-        /// <exception cref="BadSyntaxException">
-        /// The <paramref name="name"/> does not fit to the syntax.
-        /// </exception>
         public override Property AddProperty()
         {
             Property property = new DartProperty(this);
@@ -125,9 +118,6 @@ namespace NClass.Dart
             return property;
         }
 
-        /// <exception cref="BadSyntaxException">
-        /// The <paramref name="name"/> does not fit to the syntax.
-        /// </exception>
         public override Event AddEvent()
         {
             return null;

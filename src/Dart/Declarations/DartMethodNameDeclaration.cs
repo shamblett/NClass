@@ -15,7 +15,7 @@ namespace NClass.Dart
             @"(?<operator>(?(convop)\s+" + DartLanguage.GenericTypePattern2 + @"|\s*" + 
             OverloadableOperators + @"))|" + DartLanguage.GenericOperationNamePattern + @"))\s*$";
 
-        static readonly Regex nameRegex = new Regex(MethodNamePattern, RegexOptions.ExplicitCapture);
+        private static readonly Regex nameRegex = new Regex(MethodNamePattern, RegexOptions.ExplicitCapture);
 
         readonly Match match;
 

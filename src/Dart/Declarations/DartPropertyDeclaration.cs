@@ -21,7 +21,7 @@ namespace NClass.Dart
             @"\s*(?<set>(?<setaccess>" + AccessorAccessPattern + @")?set(\s*;)?)?\s*}?" +
             DartLanguage.DeclarationEnding;
 
-        static readonly Regex propertyRegex = new Regex(PropertyPattern);
+        private static readonly Regex propertyRegex = new Regex(PropertyPattern);
 
         readonly Match match;
         readonly HashSet<string> modifiers;

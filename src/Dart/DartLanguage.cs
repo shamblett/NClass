@@ -37,9 +37,6 @@ namespace NClass.Dart
         // System.String
         private const string TypeNamePattern = InitialChar + @"(\w|\." + InitialChar + @")*";
 
-        // [,][][,,]
-        private const string ArrayPattern = @"(\s*\[\s*(,\s*)*\])*";
-
         // get
         public const string GetPattern = @"\s*get\s*";
 
@@ -111,18 +108,20 @@ namespace NClass.Dart
         static Regex genericNameRegex = new Regex(ClosedGenericNamePattern, RegexOptions.ExplicitCapture);
         static Regex typeRegex = new Regex(ClosedTypePattern, RegexOptions.ExplicitCapture);
 
-        static readonly string[] reservedNames = {
+        private static readonly string[] reservedNames = {
             "assert", "break", "case", "catch", "class", "const", "continue", "default", "do", "else", "enum", "extends", "false", "final", "finally", "for", "if", "in", "is", "new", "null", "rethrow", "return", "super", "switch", 
             "this", "throw", "true", "try", "var", "while", "with", "abstract", "as", "covariant", "deferred", "export", "extension", "external", "factory", "function", "get", "implements", "import", 
             "interface", "library", "mixin", "operator", "part", "set", "static", "typedef"
     };
-        static readonly string[] typeKeywords = {
+
+        private static readonly string[] typeKeywords = {
             "bool", "double", "int", "num", "Object", "String", "void", "Map", "List, dynamic, null"
         };
-        static readonly Dictionary<AccessModifier, string> validAccessModifiers;
-        static readonly Dictionary<ClassModifier, string> validClassModifiers;
-        static readonly Dictionary<FieldModifier, string> validFieldModifiers;
-        static readonly Dictionary<OperationModifier, string> validOperationModifiers;
+
+        private static readonly Dictionary<AccessModifier, string> validAccessModifiers;
+        private static readonly Dictionary<ClassModifier, string> validClassModifiers;
+        private static readonly Dictionary<FieldModifier, string> validFieldModifiers;
+        private static readonly Dictionary<OperationModifier, string> validOperationModifiers;
 
         static DartClass objectClass;
 
@@ -407,16 +406,6 @@ namespace NClass.Dart
             }
         }
 
-        public override AccessModifier TryParseAccessModifier(string value)
-        {
-            return base.TryParseAccessModifier(value);
-        }
-
-        public override OperationModifier TryParseOperationModifier(string value)
-        {
-            return base.TryParseOperationModifier(value);
-        }
-
         public override string GetAccessString(AccessModifier access, bool forCode)
         {
             switch (access) {
@@ -534,22 +523,22 @@ namespace NClass.Dart
             get { return false; }
         }
 
-        public sealed override bool SupportsInterfaces
+        public override bool SupportsInterfaces
         {
             get { return true; }
         }
 
-        public sealed override bool SupportsStructures
+        public override bool SupportsStructures
         {
             get { return false; }
         }
 
-        public sealed override bool SupportsEnums
+        public override bool SupportsEnums
         {
             get { return true; }
         }
 
-        public sealed override bool SupportsDelegates
+        public override bool SupportsDelegates
         {
             get { return false; }
         }

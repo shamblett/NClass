@@ -14,7 +14,7 @@ namespace NClass.Dart
             @"(?<name>" + DartLanguage.NamePattern + @")" +
             @"(\s*=\s*(?<defval>([^,""]+|""(\\""|[^""])*"")))?";
 
-        static readonly Regex parameterRegex =
+        private static readonly Regex parameterRegex =
             new Regex(ParameterPattern, RegexOptions.ExplicitCapture);
 
         readonly IEnumerable<DartParameterDeclaration> parameters;

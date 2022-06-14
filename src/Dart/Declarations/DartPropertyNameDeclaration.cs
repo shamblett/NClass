@@ -9,7 +9,7 @@ namespace NClass.Dart
         const string PropertyNamePattern =
             @"^\s*(?<name>" + DartLanguage.GenericOperationNamePattern + @")\s*$";
 
-        static readonly Regex nameRegex = new Regex(PropertyNamePattern, RegexOptions.ExplicitCapture);
+        private static readonly Regex nameRegex = new Regex(PropertyNamePattern, RegexOptions.ExplicitCapture);
 
         readonly Match match;
 

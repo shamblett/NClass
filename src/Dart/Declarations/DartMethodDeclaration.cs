@@ -24,10 +24,10 @@ namespace NClass.Dart
             @"(?<type>" + DartLanguage.GenericTypePattern2 + @")\s+" +
             @"(?<name>" + OperatorPattern + "|" + DartLanguage.GenericOperationNamePattern + "))" +
             @"\s*\((?<args>.*)\)" + DartLanguage.DeclarationEnding;
-        
-        static readonly Regex methodRegex = new Regex(MethodPattern, RegexOptions.ExplicitCapture);
-        static readonly Regex getRegex = new Regex(DartLanguage.GetPattern);
-        static readonly Regex setRegex = new Regex(DartLanguage.SetPattern);
+
+        private static readonly Regex methodRegex = new Regex(MethodPattern, RegexOptions.ExplicitCapture);
+        private static readonly Regex getRegex = new Regex(DartLanguage.GetPattern);
+        private static readonly Regex setRegex = new Regex(DartLanguage.SetPattern);
         readonly Match match;
         readonly HashSet<string> modifiers;
 

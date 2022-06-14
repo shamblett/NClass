@@ -17,7 +17,7 @@ namespace NClass.Dart
             @"(?<name>" + DartLanguage.NamePattern + @")" +
             @"(\s*=\s*" + InitValuePattern + ")?" + DartLanguage.DeclarationEnding;
 
-        static readonly Regex fieldRegex = new Regex(FieldPattern, RegexOptions.ExplicitCapture);
+        private static readonly Regex fieldRegex = new Regex(FieldPattern, RegexOptions.ExplicitCapture);
 
         readonly Match match;
         readonly HashSet<string> modifiers;

@@ -68,7 +68,7 @@ namespace NClass.Dart
         }
 
         /// <exception cref="BadSyntaxException">
-        /// <see cref="IsConst"/> is set to true while 
+        /// <see cref="IsConstant"/> is set to true while 
         /// <see cref="Field.InitialValue"/> is empty.
         /// </exception>
         public override bool IsConstant

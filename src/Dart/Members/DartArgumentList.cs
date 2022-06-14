@@ -94,9 +94,9 @@ namespace NClass.Dart
         /// </exception>
         public override void InitFromDeclaration(IArgumentListDeclaration<IParameterDeclaration> declaration)
         {
-            if (declaration is IDartArgumentListDeclaration<IDartParameterDeclaration> DartDeclaration)
+            if (declaration is IDartArgumentListDeclaration<IDartParameterDeclaration> dartDeclaration)
             {
-                InitFromDeclaration(DartDeclaration);
+                InitFromDeclaration(dartDeclaration);
             }
             else
             {

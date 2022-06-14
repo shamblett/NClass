@@ -13,7 +13,7 @@ namespace NClass.Dart
             @"(?<name>" + DartLanguage.NamePattern + @")" +
             @"(\s*=\s*(?<defval>([^,""]+|""(\\""|[^""])*"")))?";
 
-        static readonly Regex parameterRegex =
+        private static readonly Regex parameterRegex =
             new Regex("^" + ParameterPattern + "$", RegexOptions.ExplicitCapture);
 
         private readonly Match match;
@@ -72,7 +72,6 @@ namespace NClass.Dart
                 case "params":
                     return ParameterModifier.Params;
 
-                case "in":
                 default:
                     return ParameterModifier.In;
             }

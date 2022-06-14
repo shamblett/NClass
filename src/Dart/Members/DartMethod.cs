@@ -23,9 +23,9 @@ namespace NClass.Dart
 {
     internal sealed class DartMethod : Method
     {
-        bool isOperator = false;
-        bool isConversionOperator = false;
-        bool isExplicitImplementation = false;
+        bool isOperator;
+        bool isConversionOperator;
+        bool isExplicitImplementation;
 
         /// <exception cref="ArgumentNullException">
         /// <paramref name="parent"/> is null.
@@ -211,9 +211,9 @@ namespace NClass.Dart
         /// </exception>
         public override void InitFromDeclaration(IMethodDeclaration declaration)
         {
-            if (declaration is IDartMethodDeclaration DartDeclaration)
+            if (declaration is IDartMethodDeclaration dartDeclaration)
             {
-                InitFromDeclaration(DartDeclaration);
+                InitFromDeclaration(dartDeclaration);
             }
             else
             {
@@ -341,11 +341,11 @@ namespace NClass.Dart
             RaiseChangedEvent = false;
             try
             {
-                string name = declaration.Name;
-                if (Language.IsForbiddenName(name))
+                string declarationName = declaration.Name;
+                if (Language.IsForbiddenName(declarationName))
                     throw new BadSyntaxException(Strings.ErrorForbiddenName);
 
-                ValidName = name;
+                ValidName = declarationName;
                 isOperator = declaration.IsOperator;
                 isConversionOperator = declaration.IsConversionOperator;
                 IsExplicitImplementation = declaration.IsExplicitImplementation;

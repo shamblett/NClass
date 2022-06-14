@@ -17,8 +17,6 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Xml.Schema;
 using NClass.Core;
 using NClass.Core.Entities;
 using NClass.Translations;
@@ -167,9 +165,6 @@ namespace NClass.Dart
             base.AddInterface(interfaceType);
         }
 
-        /// <exception cref="BadSyntaxException">
-        /// The <paramref name="name"/> does not fit to the syntax.
-        /// </exception>
         public override Field AddField()
         {
             Field field = new DartField(this);
@@ -188,9 +183,6 @@ namespace NClass.Dart
 
         public override Destructor AddDestructor() { return null; }
 
-        /// <exception cref="BadSyntaxException">
-        /// The <paramref name="name"/> does not fit to the syntax.
-        /// </exception>
         public override Method AddMethod()
         {
             Method method = new DartMethod(this);
@@ -203,9 +195,6 @@ namespace NClass.Dart
             return method;
         }
 
-        /// <exception cref="BadSyntaxException">
-        /// The <paramref name="name"/> does not fit to the syntax.
-        /// </exception>
         public override Property AddProperty()
         {
             Property property = new DartProperty(this);
@@ -218,9 +207,6 @@ namespace NClass.Dart
             return property;
         }
 
-        /// <exception cref="BadSyntaxException">
-        /// The <paramref name="name"/> does not fit to the syntax.
-        /// </exception>
         public override Event AddEvent()
         {
             return null;

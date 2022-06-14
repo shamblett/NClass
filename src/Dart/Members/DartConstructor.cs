@@ -44,8 +44,13 @@ namespace NClass.Dart
             }
             set
             {
-                if (value != null && value != GetNameWithoutGeneric(name != null ? name : Parent.Name))
-                    throw new BadSyntaxException(Strings.ErrorConstructorName);
+                if (value == null || string.Equals(value, GetNameWithoutGeneric(name ?? Parent.Name),
+                        StringComparison.Ordinal))
+                {
+                    return;
+                }
+
+                throw new BadSyntaxException(Strings.ErrorConstructorName);
             }
         }
 
@@ -131,9 +136,9 @@ namespace NClass.Dart
                 
         public override void InitFromDeclaration(IMethodDeclaration declaration)
         {
-            if (declaration is IDartConstructorDeclaration DartDeclaration)
+            if (declaration is IDartConstructorDeclaration dartDeclaration)
             {
-                InitFromDeclaration(DartDeclaration);
+                InitFromDeclaration(dartDeclaration);
             }
             else
             {

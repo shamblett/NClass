@@ -13,7 +13,7 @@ namespace NClass.Dart
             @"(?<name>" + DartLanguage.NamePattern + ")" +
             @"(?<namedconstructor>" + DartLanguage.NamedConstructorPattern + ")";
 
-        static readonly Regex constructorRegex =
+        private static readonly Regex constructorRegex =
             new Regex(ConstructorPattern, RegexOptions.ExplicitCapture);
 
         private readonly Match match;
